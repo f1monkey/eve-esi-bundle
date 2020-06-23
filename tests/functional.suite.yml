@@ -1,0 +1,11 @@
+actor: FunctionalTester
+modules:
+    enabled:
+        -   REST:
+                url: /
+                part: Json
+                depends: Symfony
+        -   Symfony:
+                app_path: 'tests/functional/app'
+                environment: 'test'
+                kernel_class: "FunctionalAppKernel"
