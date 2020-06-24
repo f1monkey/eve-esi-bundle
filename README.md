@@ -20,47 +20,9 @@ Create config file (i.e. `config/packages/request_handle.yaml`)
 ### Configuration
 
 ```yaml
-request_handle:
-    value_resolver:
-        # controller arguments implementing this interface will be deserialized using RequestDeserializationValueResolver
-        request_class: App\Model\RequestInterface
-    request_validator:
-        # controller arguments implementing this interface will be validated using RequestValidationListener
-        request_class: App\Model\RequestInterface
-    exception_log:
-        # logger service id for exception logging (default value = @logger)
-        logger: 'logger'
-```
-
-### ExceptionListener
-
-#### Custom error response
-
-If you need to customize error response, you should override exception response factory in your application's `services.yaml`
-```yaml
-services:
-    F1Monkey\EveEsiBundle\Factory\ErrorResponseFactoryInterface:
-        class: App\Factory\ErrorResponseFactory
-```
-#### Custom exception message
-
-By default, error messages are overridden by default HTTP messages according to HTTP response code.
-To set a custom error message, you should implement [UserFriendlyExceptionInterface](src/Exception/UserFriendlyExceptionInterface.php) in your Exception class.
-
-#### X-Debug header
-
-Because all exceptions are transformed to a "user-friendly" responses, debugging becomes harder: symfony error page will not appear at all.
-To show the error page, two conditions must be met:
-* `kernel.debug` parameter set to `true` (it is default setting for `dev` environment)
-* `X-Debug` header is present in the request
-
-### ExceptionLogListener
-
-#### Customize logging
-
-To customize logging you should override logger context provider service:
-```yaml
-services:
-    F1Monkey\EveEsiBundle\Service\LogContextProviderInterface:
-        class: App\Service\LogContextProvider
+f1_monkey_eve_esi:
+    oauth: # optional, if you want to use EVE SSO
+        callback_url: '%env(EVE_ESI_CALLBACK_URL)%' # optional, if you need to use EVE SSO
+        client_id: '%env(EVE_ESI_CLIENT_ID)%' # your app's callback url
+        client_secret: '%env(EVE_ESI_CLIENT_SECRET)%' # your app's client secret
 ```
