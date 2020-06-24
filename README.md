@@ -12,7 +12,7 @@ Add to `config/bundles.php`:
 <?php
 return [
     // ...
-    F1Monkey\EveEsiBundle\EveEsiBundle::class => ['all' => true],
+    F1Monkey\EveEsiBundle\F1MonkeyEveEsiBundle::class => ['all' => true],
 ];
 ```
 Create config file (i.e. `config/packages/request_handle.yaml`)

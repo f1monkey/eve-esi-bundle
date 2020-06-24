@@ -12,11 +12,11 @@ use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 
 /**
- * Class EveEsiExtension
+ * Class F1MonkeyEveEsiExtension
  *
  * @package F1Monkey\EveEsiBundle\DependencyInjection
  */
-class EveEsiExtension extends Extension
+class F1MonkeyEveEsiExtension extends Extension
 {
     /**
      * Loads a specific configuration.
@@ -37,12 +37,10 @@ class EveEsiExtension extends Extension
         $config = $processor->processConfiguration($configuration, $configs);
 
         if (isset($config['oauth'])) {
-            $this->injectOauthParameters($config['oauth'], $container, $loader);
+            $this->injectOauthParameters($config['oauth'], $container);
+            $loader->load('oauth.yaml');
         }
 
-        $loader = new YamlFileLoader(
-            $container, new FileLocator(__DIR__ . '/../Resources/config')
-        );
         $loader->load('services.yaml');
     }
 
@@ -53,12 +51,11 @@ class EveEsiExtension extends Extension
      *
      * @throws Exception
      */
-    protected function injectOauthParameters(array $config, ContainerBuilder $container, LoaderInterface $loader)
+    protected function injectOauthParameters(array $config, ContainerBuilder $container)
     {
         $container->setParameter('f1monkey.eve_esi.oauth.base_url', $config['base_url']);
         $container->setParameter('f1monkey.eve_esi.oauth.callback_url', $config['callback_url']);
         $container->setParameter('f1monkey.eve_esi.oauth.client_id', $config['client_id']);
         $container->setParameter('f1monkey.eve_esi.oauth.client_secret', $config['client_secret']);
-        $loader->load('oauth.yaml');
     }
 }

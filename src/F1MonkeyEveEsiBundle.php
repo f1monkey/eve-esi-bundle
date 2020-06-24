@@ -6,11 +6,11 @@ namespace F1Monkey\EveEsiBundle;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 /**
- * Class EveEsiBundle
+ * Class F1MonkeyEveEsiBundle
  *
  * @package F1Monkey\EveEsiBundle
  */
-class EveEsiBundle extends Bundle
+class F1MonkeyEveEsiBundle extends Bundle
 {
 
 }

@@ -52,7 +52,7 @@ class Configuration implements ConfigurationInterface
                     ->isRequired()
                     ->cannotBeEmpty()
                 ->end()
-                ->scalarNode('secret_key')
+                ->scalarNode('client_secret')
                     ->info('Application secret key')
                     ->isRequired()
                     ->cannotBeEmpty()
