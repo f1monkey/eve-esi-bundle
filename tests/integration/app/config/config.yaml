@@ -1,0 +1,24 @@
+framework:
+    secret: 'test'
+    test: true
+
+monolog:
+    handlers:
+        main:
+            type: stream
+            path: "%kernel.logs_dir%/%kernel.environment%.log"
+            level: debug
+
+f1_monkey_eve_esi:
+    oauth:
+        callback_url: 'callback'
+        client_id: 'client_id'
+        client_secret: 'client_secret'
+
+services:
+    _defaults:
+        public: true
+
+#    F1Monkey\EveEsiBundle\Tests\functional\Mock\Controller:
+#        class: F1Monkey\EveEsiBundle\Tests\functional\Mock\Controller
+#        tags: ['controller.service_arguments']

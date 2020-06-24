@@ -6,10 +6,15 @@ services:
     f1monkey.eve_esi.guzzle:
         class: GuzzleHttp\Client
 
+    f1monkey.eve_esi.serializer.scope_handler:
+        class: F1Monkey\EveEsiBundle\Serializer\Handler\ScopeHandler
+        tags:
+            - { name: 'jms_serializer.subscribing_handler'}
+
     f1monkey.eve_esi.oauth.request_options_provider:
         class: F1Monkey\EveEsiBundle\Service\OAuth\OAuthRequestOptionsProvider
         arguments:
-            $arrayTransformer: '@serializer'
+            $arrayTransformer: '@jms_serializer'
             $clientId: '%f1monkey.eve_esi.oauth.client_id%'
             $clientSecret: '%f1monkey.eve_esi.oauth.client_secret%'
 

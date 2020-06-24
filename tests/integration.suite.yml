@@ -1,0 +1,11 @@
+actor: IntegrationTester
+modules:
+    enabled:
+        -   REST:
+                url: /
+                part: Json
+                depends: Symfony
+        -   Symfony:
+                app_path: 'tests/integration/app'
+                environment: 'test'
+                kernel_class: 'IntegrationAppKernel'
