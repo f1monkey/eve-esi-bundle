@@ -23,3 +23,4 @@ composer.lock
 
 # test microkernel container dumps and logs
 tests/functional/var
+tests/integration/var
