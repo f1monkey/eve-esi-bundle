@@ -1,0 +1,44 @@
+services:
+    _defaults:
+        autowire: false
+        autoconfigure: false
+
+    f1monkey.eve_esi.guzzle:
+        class: GuzzleHttp\Client
+
+    f1monkey.eve_esi.oauth.request_options_provider:
+        class: F1Monkey\EveEsiBundle\Service\OAuth\OAuthRequestOptionsProvider
+        arguments:
+            $arrayTransformer: '@serializer'
+            $clientId: '%f1monkey.eve_esi.oauth.client_id%'
+            $clientSecret: '%f1monkey.eve_esi.oauth.client_secret%'
+
+    f1monkey.eve_esi.oauth.api_client:
+        class: F1Monkey\EveEsiBundle\Service\ApiClient\ApiClient
+        arguments:
+            $guzzle: '@f1monkey.eve_esi.guzzle'
+            $baseUrl: '%f1monkey.eve_esi.oauth.base_url%'
+            $optionsProvider: '@f1monkey.eve_esi.oauth.request_options_provider'
+
+    f1monkey.eve_esi.oauth.api_client.validation_proxy:
+        class: F1Monkey\EveEsiBundle\Service\ApiClient\RequestValidationProxy
+        arguments:
+            $validator: '@validator'
+            $apiClient: '@f1monkey.eve_esi.oauth.api_client'
+
+    F1Monkey\EveEsiBundle\Factory\OAuth\OAuthRequestFactoryInterface:
+        class: F1Monkey\EveEsiBundle\Factory\OAuth\OAuthRequestFactory
+
+    F1Monkey\EveEsiBundle\Factory\OAuth\RedirectUrlFactoryInterface:
+        class: F1Monkey\EveEsiBundle\Factory\OAuth\RedirectUrlFactory
+        arguments:
+            $oauthUrl: '%f1monkey.eve_esi.oauth.base_url%'
+            $redirectUrl: '%f1monkey.eve_esi.oauth.callback_url%'
+            $clientId: '%f1monkey.eve_esi.oauth.client_id%'
+
+    F1Monkey\EveEsiBundle\Service\OAuth\OAuthServiceInterface:
+        class: F1Monkey\EveEsiBundle\Service\OAuth\OAuthService
+        arguments:
+            $redirectUrlFactory: '@F1Monkey\EveEsiBundle\Factory\OAuth\RedirectUrlFactoryInterface'
+            $oauthRequestFactory: '@F1Monkey\EveEsiBundle\Factory\OAuth\OAuthRequestFactoryInterface'
+            $apiClient: '@f1monkey.eve_esi.oauth.api_client.validation_proxy'

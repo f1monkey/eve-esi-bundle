@@ -26,10 +26,42 @@ class Configuration implements ConfigurationInterface
         $rootNode = $treeBuilder->getRootNode();
         $root     = $rootNode->children();
 
-        // @todo
+        $this->addOAuthOptions($root);
 
         $rootNode->end();
 
         return $treeBuilder;
+    }
+
+    /**
+     * @param NodeBuilder $node
+     */
+    protected function addOAuthOptions(NodeBuilder $node): void
+    {
+        $node
+            ->arrayNode('oauth')
+            ->info('EVE SSO Settings (https://developers.eveonline.com/applications)')
+            ->children()
+                ->scalarNode('base_url')
+                    ->info('URL for the sso server')
+                    ->defaultValue('https://login.eveonline.com')
+                    ->cannotBeEmpty()
+                ->end()
+                ->scalarNode('client_id')
+                    ->info('Application client id')
+                    ->isRequired()
+                    ->cannotBeEmpty()
+                ->end()
+                ->scalarNode('secret_key')
+                    ->info('Application secret key')
+                    ->isRequired()
+                    ->cannotBeEmpty()
+                ->end()
+                ->scalarNode('callback_url')
+                    ->info('Application callback URL')
+                    ->isRequired()
+                    ->cannotBeEmpty()
+                ->end()
+            ->end();
     }
 }
