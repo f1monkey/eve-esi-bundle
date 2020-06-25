@@ -58,6 +58,8 @@ class OAuthService implements OAuthServiceInterface
     }
 
     /**
+     * Generate URL to redirect user for authentication
+     *
      * @param Collection<int, Scope> $scopes
      *
      * @return string
@@ -70,6 +72,8 @@ class OAuthService implements OAuthServiceInterface
     }
 
     /**
+     * Get access and refresh tokens by authenticated user's authorization code
+     *
      * @param string $authorizationCode
      *
      * @return TokenResponse
@@ -79,6 +83,31 @@ class OAuthService implements OAuthServiceInterface
     public function verifyCode(string $authorizationCode): TokenResponse
     {
         $request = $this->oauthRequestFactory->createVerifyCodeRequest($authorizationCode);
+
+        /** @var TokenResponse $result */
+        $result = $this->apiClient->post($request, TokenResponse::class);
+
+        if (!in_array($result->getTokenType(), OAuthEnum::TOKEN_TYPES, true)) {
+            throw new InvalidTokenTypeException(
+                sprintf('Invalid token type "%s"', $result->getTokenType())
+            );
+        }
+
+        return $result;
+    }
+
+    /**
+     * Get new access token from EVE SSO
+     *
+     * @param string $refreshToken
+     *
+     * @return TokenResponse
+     * @throws RequestValidationException
+     * @throws ApiClientExceptionInterface
+     */
+    public function refreshToken(string $refreshToken): TokenResponse
+    {
+        $request = $this->oauthRequestFactory->createRefreshTokenRequest($refreshToken);
 
         /** @var TokenResponse $result */
         $result = $this->apiClient->post($request, TokenResponse::class);

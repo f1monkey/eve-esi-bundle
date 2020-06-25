@@ -20,6 +20,8 @@ use F1Monkey\EveEsiBundle\Exception\OAuth\OAuthRequestException;
 interface OAuthServiceInterface
 {
     /**
+     * Generate URL to redirect user for authentication
+     *
      * @param Collection<int, Scope> $scopes
      *
      * @return string
@@ -30,6 +32,8 @@ interface OAuthServiceInterface
     public function createRedirectUrl(Collection $scopes): string;
 
     /**
+     * Get access and refresh tokens by authenticated user's authorization code
+     *
      * @param string $authorizationCode
      *
      * @return TokenResponse
@@ -38,4 +42,16 @@ interface OAuthServiceInterface
      * @throws ApiClientExceptionInterface
      */
     public function verifyCode(string $authorizationCode): TokenResponse;
+
+    /**
+     * Get new access token from EVE SSO
+     *
+     * @param string $refreshToken
+     *
+     * @return TokenResponse
+     * @throws RequestValidationException
+     * @throws OAuthRequestException
+     * @throws ApiClientExceptionInterface
+     */
+    public function refreshToken(string $refreshToken): TokenResponse;
 }
