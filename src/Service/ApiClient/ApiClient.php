@@ -3,10 +3,13 @@ declare(strict_types=1);
 
 namespace F1Monkey\EveEsiBundle\Service\ApiClient;
 
+use F1Monkey\EveEsiBundle\Exception\ApiClient\ApiClientExceptionInterface;
 use F1Monkey\EveEsiBundle\Exception\ApiClient\ImpossibleException;
+use F1Monkey\EveEsiBundle\ValueObject\RequestInterface;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Exception\RequestException;
+use JMS\Serializer\SerializerInterface;
 use RuntimeException;
 use Sabre\Uri\InvalidUriException;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,79 +19,96 @@ use function Sabre\Uri\resolve as resolve;
  * Class ApiClient
  *
  * @package F1Monkey\EveEsiBundle\Service\ApiClient
+ *
+ * @internal
  */
 class ApiClient implements ApiClientInterface
 {
     /**
      * @var ClientInterface
      */
-    protected ClientInterface $guzzle;
+    protected ClientInterface $httpClient;
 
     /**
-     * @var RequestOptionsProviderInterface
+     * @var SerializerInterface
      */
-    protected RequestOptionsProviderInterface $optionsProvider;
+    protected SerializerInterface $serializer;
 
     /**
-     * @var string
+     * @var RequestExceptionFactoryInterface
      */
-    protected string $baseUrl;
+    protected RequestExceptionFactoryInterface $exceptionFactory;
 
     /**
      * ApiClient constructor.
      *
-     * @param ClientInterface                 $guzzle
-     * @param RequestOptionsProviderInterface $optionsProvider
-     * @param string                          $baseUrl
+     * @param ClientInterface                  $httpClient
+     * @param SerializerInterface              $serializer
+     * @param RequestExceptionFactoryInterface $exceptionFactory
      */
     public function __construct(
-        ClientInterface $guzzle,
-        RequestOptionsProviderInterface $optionsProvider,
-        string $baseUrl
+        ClientInterface $httpClient,
+        SerializerInterface $serializer,
+        RequestExceptionFactoryInterface $exceptionFactory
     )
     {
-        $this->guzzle          = $guzzle;
-        $this->optionsProvider = $optionsProvider;
-        $this->baseUrl         = $baseUrl;
+        $this->httpClient = $httpClient;
+        $this->serializer = $serializer;
+        $this->exceptionFactory = $exceptionFactory;
     }
 
     /**
-     * @param string $endpoint
-     * @param object $body
+     * @param ClientInterface $httpClient
      *
-     * @return string
+     * @return ApiClient
+     */
+    public function setHttpClient(ClientInterface $httpClient): ApiClient
+    {
+        $this->httpClient = $httpClient;
+
+        return $this;
+    }
+
+    /**
+     * @param RequestInterface $request
+     * @param string           $responseClass
+     *
+     * @return object
      * @throws InvalidUriException
+     * @throws ApiClientExceptionInterface
      * @throws RuntimeException
      */
-    public function post(string $endpoint, object $body): string
+    public function post(RequestInterface $request, string $responseClass): object
     {
-        $options = $this->optionsProvider->createPostRequestOptions($body);
+        $options = $request->getPostRequestOptions();
 
         try {
-            $response = $this->guzzle->request(
+            $response = $this->httpClient->request(
                 Request::METHOD_POST,
-                $this->createUrl($endpoint),
+                $this->createUrl($request->getBaseUrl(), $request->getEndpoint()),
                 $options
             );
         } catch (GuzzleException $e) {
             if ($e instanceof RequestException) {
-                // @todo handle request exception
+                throw $this->exceptionFactory->createRequestException($e);
             }
 
             throw new ImpossibleException($e->getMessage(), $e->getCode(), $e);
         }
 
-        return $response->getBody()->getContents();
+        // @phpstan-ignore-next-line
+        return $this->serializer->deserialize($response->getBody()->getContents(), $responseClass, 'json');
     }
 
     /**
+     * @param string $baseUrl
      * @param string $endPoint
      *
      * @return string
      * @throws InvalidUriException
      */
-    protected function createUrl(string $endPoint): string
+    protected function createUrl(string $baseUrl, string $endPoint): string
     {
-        return resolve($this->baseUrl, $endPoint);
+        return resolve($baseUrl, $endPoint);
     }
 }

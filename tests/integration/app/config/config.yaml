@@ -19,6 +19,8 @@ services:
     _defaults:
         public: true
 
-#    F1Monkey\EveEsiBundle\Tests\functional\Mock\Controller:
-#        class: F1Monkey\EveEsiBundle\Tests\functional\Mock\Controller
-#        tags: ['controller.service_arguments']
+    test.f1monkey.eve_esi.guzzle:
+        alias: f1monkey.eve_esi.guzzle
+
+    test.f1monkey.eve_esi.oauth_service:
+        alias: F1Monkey\EveEsiBundle\Service\OAuth\OAuthServiceInterface

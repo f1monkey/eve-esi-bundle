@@ -4,13 +4,15 @@ declare(strict_types=1);
 namespace F1Monkey\EveEsiBundle\Service\ApiClient;
 
 use F1Monkey\EveEsiBundle\Exception\ApiClient\RequestValidationException;
-use RuntimeException;
+use F1Monkey\EveEsiBundle\ValueObject\RequestInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 /**
  * Class RequestValidationProxy
  *
  * @package F1Monkey\EveEsiBundle\Service\ApiClient
+ *
+ * @internal
  */
 class RequestValidationProxy implements ApiClientInterface
 {
@@ -37,20 +39,19 @@ class RequestValidationProxy implements ApiClientInterface
     }
 
     /**
-     * @param string $endpoint
-     * @param object $body
+     * @param RequestInterface $request
+     * @param string           $responseClass
      *
-     * @return string
+     * @return object
      * @throws RequestValidationException
-     * @throws RuntimeException
      */
-    public function post(string $endpoint, object $body): string
+    public function post(RequestInterface $request, string $responseClass): object
     {
-        $violations = $this->validator->validate($body);
+        $violations = $this->validator->validate($request->getRequest());
         if ($violations->count()) {
             throw new RequestValidationException($violations, 'Request validation error');
         }
 
-        return $this->apiClient->post($endpoint, $body);
+        return $this->apiClient->post($request, $responseClass);
     }
 }

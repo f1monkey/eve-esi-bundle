@@ -47,11 +47,8 @@ class F1MonkeyEveEsiExtension extends Extension
     /**
      * @param array<string, mixed> $config
      * @param ContainerBuilder     $container
-     * @param LoaderInterface      $loader
-     *
-     * @throws Exception
      */
-    protected function injectOauthParameters(array $config, ContainerBuilder $container)
+    protected function injectOauthParameters(array $config, ContainerBuilder $container): void
     {
         $container->setParameter('f1monkey.eve_esi.oauth.base_url', $config['base_url']);
         $container->setParameter('f1monkey.eve_esi.oauth.callback_url', $config['callback_url']);

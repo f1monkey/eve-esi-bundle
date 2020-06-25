@@ -3,7 +3,9 @@ declare(strict_types=1);
 
 namespace F1Monkey\EveEsiBundle\Service\ApiClient;
 
+use F1Monkey\EveEsiBundle\Exception\ApiClient\ApiClientExceptionInterface;
 use F1Monkey\EveEsiBundle\Exception\ApiClient\RequestValidationException;
+use F1Monkey\EveEsiBundle\ValueObject\RequestInterface;
 
 /**
  * Interface ApiClientInterface
@@ -13,11 +15,12 @@ use F1Monkey\EveEsiBundle\Exception\ApiClient\RequestValidationException;
 interface ApiClientInterface
 {
     /**
-     * @param string                $endpoint
-     * @param object                $body
+     * @param RequestInterface $request
+     * @param string           $responseClass
      *
-     * @return string
+     * @return object
      * @throws RequestValidationException
+     * @throws ApiClientExceptionInterface
      */
-    public function post(string $endpoint, object $body): string;
+    public function post(RequestInterface $request, string $responseClass): object;
 }

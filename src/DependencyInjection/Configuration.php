@@ -38,6 +38,7 @@ class Configuration implements ConfigurationInterface
      */
     protected function addOAuthOptions(NodeBuilder $node): void
     {
+        // @phpstan-ignore-next-line
         $node
             ->arrayNode('oauth')
             ->info('EVE SSO Settings (https://developers.eveonline.com/applications)')

@@ -18,7 +18,7 @@ use JMS\Serializer\VisitorInterface;
 class ScopeHandler implements SubscribingHandlerInterface
 {
     /**
-     * @return array
+     * @return array<int, array<string, int|string>>
      */
     public static function getSubscribingMethods(): array
     {

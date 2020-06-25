@@ -18,9 +18,9 @@ class OAuthEnum
     public const GRANT_TYPE_CODE = 'authorization_code';
     public const GRANT_TYPE_REFRESH_TOKEN = 'refresh_token';
 
-    public const AUTHORIZATION_HEADER_TYPE = 'Bearer';
-    public const AUTHORIZATION_HEADER_TYPES = [
-        self::AUTHORIZATION_HEADER_TYPE,
+    public const BEARER_TOKEN_TYPE = 'Bearer';
+    public const TOKEN_TYPES = [
+        self::BEARER_TOKEN_TYPE,
     ];
 
     public const SCOPES = [

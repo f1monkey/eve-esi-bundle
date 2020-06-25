@@ -11,19 +11,25 @@ services:
         tags:
             - { name: 'jms_serializer.subscribing_handler'}
 
-    f1monkey.eve_esi.oauth.request_options_provider:
-        class: F1Monkey\EveEsiBundle\Service\OAuth\OAuthRequestOptionsProvider
+    f1monkey.eve_esi.oauth.request_prototype:
+        class: F1Monkey\EveEsiBundle\ValueObject\OAuthRequest
         arguments:
             $arrayTransformer: '@jms_serializer'
+            $baseUrl: '%f1monkey.eve_esi.oauth.base_url%'
             $clientId: '%f1monkey.eve_esi.oauth.client_id%'
             $clientSecret: '%f1monkey.eve_esi.oauth.client_secret%'
+
+    f1monkey.eve_esi.oauth.request_exception_factory:
+        class: F1Monkey\EveEsiBundle\Factory\OAuth\RequestExceptionFactory
+        arguments:
+            $serializer: '@jms_serializer'
 
     f1monkey.eve_esi.oauth.api_client:
         class: F1Monkey\EveEsiBundle\Service\ApiClient\ApiClient
         arguments:
-            $guzzle: '@f1monkey.eve_esi.guzzle'
-            $baseUrl: '%f1monkey.eve_esi.oauth.base_url%'
-            $optionsProvider: '@f1monkey.eve_esi.oauth.request_options_provider'
+            $httpClient: '@f1monkey.eve_esi.guzzle'
+            $serializer: '@jms_serializer'
+            $exceptionFactory: '@f1monkey.eve_esi.oauth.request_exception_factory'
 
     f1monkey.eve_esi.oauth.api_client.validation_proxy:
         class: F1Monkey\EveEsiBundle\Service\ApiClient\RequestValidationProxy
@@ -33,6 +39,8 @@ services:
 
     F1Monkey\EveEsiBundle\Factory\OAuth\OAuthRequestFactoryInterface:
         class: F1Monkey\EveEsiBundle\Factory\OAuth\OAuthRequestFactory
+        arguments:
+            $requestPrototype: '@f1monkey.eve_esi.oauth.request_prototype'
 
     F1Monkey\EveEsiBundle\Factory\OAuth\RedirectUrlFactoryInterface:
         class: F1Monkey\EveEsiBundle\Factory\OAuth\RedirectUrlFactory

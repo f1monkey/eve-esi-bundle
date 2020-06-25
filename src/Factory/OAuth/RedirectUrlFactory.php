@@ -20,6 +20,8 @@ use function sprintf;
  * Class RedirectUrlFactory
  *
  * @package F1Monkey\EveEsiBundle\Factory\OAuth
+ *
+ * @internal
  */
 class RedirectUrlFactory implements RedirectUrlFactoryInterface
 {
@@ -107,7 +109,7 @@ class RedirectUrlFactory implements RedirectUrlFactoryInterface
     /**
      * @param Collection<int, Scope> $scopes
      *
-     * @return array
+     * @return array<int, string>
      */
     protected function getScopeCodes(Collection $scopes): array
     {

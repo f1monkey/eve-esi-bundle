@@ -6,6 +6,7 @@ namespace F1Monkey\EveEsiBundle\Exception\ApiClient;
 use F1Monkey\EveEsiBundle\Exception\ValidationExceptionInterface;
 use F1Monkey\EveEsiBundle\Exception\ValidationExceptionTrait;
 use RuntimeException;
+use Symfony\Component\Validator\ConstraintViolationInterface;
 use Symfony\Component\Validator\ConstraintViolationListInterface;
 use Throwable;
 
@@ -23,10 +24,10 @@ class RequestValidationException extends RuntimeException implements
     /**
      * RequestValidationException constructor.
      *
-     * @param ConstraintViolationListInterface $violations
-     * @param string                           $message
-     * @param int                              $code
-     * @param Throwable|null                   $previous
+     * @param ConstraintViolationListInterface<ConstraintViolationInterface> $violations
+     * @param string                                                         $message
+     * @param int                                                            $code
+     * @param Throwable|null                                                 $previous
      */
     public function __construct(
         ConstraintViolationListInterface $violations,
