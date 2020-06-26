@@ -1,6 +1,8 @@
 # EVE ESI Bundle
 ![](https://github.com/f1monkey/eve-esi-bundle/workflows/Tests/badge.svg) ![](https://img.shields.io/github/v/tag/f1monkey/eve-esi-bundle)
 
+Symfony4/Symfony5 bundle for [EVE Swagger Interface](https://esi.evetech.net)
+
 ### Installation
 
 ```bash
