@@ -1,19 +1,19 @@
 <?php
 declare(strict_types=1);
 
-namespace F1Monkey\EveEsiBundle\Factory\Esi;
+namespace F1monkey\EveEsiBundle\Factory\Esi;
 
-use F1Monkey\EveEsiBundle\Dto\Esi\Response\ErrorResponse;
-use F1Monkey\EveEsiBundle\Exception\ApiClient\ApiClientExceptionInterface;
-use F1Monkey\EveEsiBundle\Exception\Esi\EsiRequestException;
-use F1Monkey\EveEsiBundle\Service\ApiClient\RequestExceptionFactoryInterface;
+use F1monkey\EveEsiBundle\Dto\Esi\Response\ErrorResponse;
+use F1monkey\EveEsiBundle\Exception\ApiClient\ApiClientExceptionInterface;
+use F1monkey\EveEsiBundle\Exception\Esi\EsiRequestException;
+use F1monkey\EveEsiBundle\Service\ApiClient\RequestExceptionFactoryInterface;
 use GuzzleHttp\Exception\RequestException;
 use JMS\Serializer\SerializerInterface;
 
 /**
  * Class RequestExceptionFactory
  *
- * @package F1Monkey\EveEsiBundle\Factory\Esi
+ * @package F1monkey\EveEsiBundle\Factory\Esi
  */
 class RequestExceptionFactory implements RequestExceptionFactoryInterface
 {

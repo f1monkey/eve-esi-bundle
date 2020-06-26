@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace F1Monkey\EveEsiBundle\DependencyInjection;
+namespace F1monkey\EveEsiBundle\DependencyInjection;
 
 use Exception;
 use Symfony\Component\Config\Definition\Processor;
@@ -11,11 +11,11 @@ use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 
 /**
- * Class F1MonkeyEveEsiExtension
+ * Class F1monkeyEveEsiExtension
  *
- * @package F1Monkey\EveEsiBundle\DependencyInjection
+ * @package F1monkey\EveEsiBundle\DependencyInjection
  */
-class F1MonkeyEveEsiExtension extends Extension
+class F1monkeyEveEsiExtension extends Extension
 {
     /**
      * Loads a specific configuration.

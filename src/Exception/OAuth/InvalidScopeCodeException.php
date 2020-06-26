@@ -1,17 +1,17 @@
 <?php
 declare(strict_types=1);
 
-namespace F1Monkey\EveEsiBundle\Exception\OAuth;
+namespace F1monkey\EveEsiBundle\Exception\OAuth;
 
 use Doctrine\Common\Collections\Collection;
-use F1Monkey\EveEsiBundle\Dto\Scope;
+use F1monkey\EveEsiBundle\Dto\Scope;
 use OutOfBoundsException;
 use Throwable;
 
 /**
  * Class InvalidScopeCodeException
  *
- * @package F1Monkey\EveEsiBundle\Exception\OAuth
+ * @package F1monkey\EveEsiBundle\Exception\OAuth
  */
 class InvalidScopeCodeException extends OutOfBoundsException implements OAuthExceptionInterface
 {

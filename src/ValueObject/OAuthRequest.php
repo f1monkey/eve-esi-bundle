@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace F1Monkey\EveEsiBundle\ValueObject;
+namespace F1monkey\EveEsiBundle\ValueObject;
 
 use GuzzleHttp\RequestOptions;
 use JMS\Serializer\ArrayTransformerInterface;
@@ -10,7 +10,7 @@ use LogicException;
 /**
  * Class OAuthRequest
  *
- * @package F1Monkey\EveEsiBundle\ValueObject
+ * @package F1monkey\EveEsiBundle\ValueObject
  */
 class OAuthRequest implements RequestInterface
 {

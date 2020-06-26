@@ -36,12 +36,12 @@
     ],
     "autoload": {
         "psr-4": {
-            "F1Monkey\\EveEsiBundle\\": "src"
+            "F1monkey\\EveEsiBundle\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "F1Monkey\\EveEsiBundle\\Tests\\": "tests"
+            "F1monkey\\EveEsiBundle\\Tests\\": "tests"
         }
     }
 }

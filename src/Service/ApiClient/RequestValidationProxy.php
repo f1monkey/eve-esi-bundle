@@ -1,17 +1,17 @@
 <?php
 declare(strict_types=1);
 
-namespace F1Monkey\EveEsiBundle\Service\ApiClient;
+namespace F1monkey\EveEsiBundle\Service\ApiClient;
 
-use F1Monkey\EveEsiBundle\Exception\ApiClient\ApiClientExceptionInterface;
-use F1Monkey\EveEsiBundle\Exception\ApiClient\RequestValidationException;
-use F1Monkey\EveEsiBundle\ValueObject\RequestInterface;
+use F1monkey\EveEsiBundle\Exception\ApiClient\ApiClientExceptionInterface;
+use F1monkey\EveEsiBundle\Exception\ApiClient\RequestValidationException;
+use F1monkey\EveEsiBundle\ValueObject\RequestInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 /**
  * Class RequestValidationProxy
  *
- * @package F1Monkey\EveEsiBundle\Service\ApiClient
+ * @package F1monkey\EveEsiBundle\Service\ApiClient
  *
  * @internal
  */

@@ -1,19 +1,19 @@
 <?php
 declare(strict_types=1);
 
-namespace F1Monkey\EveEsiBundle\Tests\integration\Serializer;
+namespace F1monkey\EveEsiBundle\Tests\integration\Serializer;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use F1Monkey\EveEsiBundle\Dto\Scope;
-use F1Monkey\EveEsiBundle\Tests\integration\AbstractIntegrationTestCase;
-use F1Monkey\EveEsiBundle\Tests\integration\mocks\ScopeListDto;
+use F1monkey\EveEsiBundle\Dto\Scope;
+use F1monkey\EveEsiBundle\Tests\integration\AbstractIntegrationTestCase;
+use F1monkey\EveEsiBundle\Tests\integration\mocks\ScopeListDto;
 use JMS\Serializer\ArrayTransformerInterface;
 use PHPUnit\Framework\ExpectationFailedException;
 
 /**
  * Class ScopeHandlerTest
  *
- * @package F1Monkey\EveEsiBundle\Tests\integration\Serializer
+ * @package F1monkey\EveEsiBundle\Tests\integration\Serializer
  */
 class ScopeHandlerTest extends AbstractIntegrationTestCase
 {

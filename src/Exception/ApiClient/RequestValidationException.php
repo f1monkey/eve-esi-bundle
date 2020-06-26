@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace F1Monkey\EveEsiBundle\Exception\ApiClient;
+namespace F1monkey\EveEsiBundle\Exception\ApiClient;
 
-use F1Monkey\EveEsiBundle\Exception\ValidationExceptionInterface;
-use F1Monkey\EveEsiBundle\Exception\ValidationExceptionTrait;
+use F1monkey\EveEsiBundle\Exception\ValidationExceptionInterface;
+use F1monkey\EveEsiBundle\Exception\ValidationExceptionTrait;
 use RuntimeException;
 use Symfony\Component\Validator\ConstraintViolationInterface;
 use Symfony\Component\Validator\ConstraintViolationListInterface;
@@ -13,7 +13,7 @@ use Throwable;
 /**
  * Class RequestValidationException
  *
- * @package F1Monkey\EveEsiBundle\Exception\ApiClient
+ * @package F1monkey\EveEsiBundle\Exception\ApiClient
  */
 class RequestValidationException extends RuntimeException implements
     ApiClientExceptionInterface,

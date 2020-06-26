@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace F1Monkey\EveEsiBundle\Tests\integration;
+namespace F1monkey\EveEsiBundle\Tests\integration;
 
 use Codeception\Test\Unit;
 use IntegrationTester;
@@ -9,7 +9,7 @@ use IntegrationTester;
 /**
  * Class AbstractIntegrationTestCase
  *
- * @package F1Monkey\EveEsiBundle\Tests\integration
+ * @package F1monkey\EveEsiBundle\Tests\integration
  */
 abstract class AbstractIntegrationTestCase extends Unit
 {

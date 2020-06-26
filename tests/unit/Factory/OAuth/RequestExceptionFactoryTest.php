@@ -1,13 +1,13 @@
 <?php
 declare(strict_types=1);
 
-namespace F1Monkey\EveEsiBundle\Tests\unit\Factory\OAuth;
+namespace F1monkey\EveEsiBundle\Tests\unit\Factory\OAuth;
 
 use Codeception\Test\Unit;
 use Exception;
-use F1Monkey\EveEsiBundle\Dto\OAuth\Response\ErrorResponse;
-use F1Monkey\EveEsiBundle\Exception\OAuth\OAuthRequestException;
-use F1Monkey\EveEsiBundle\Factory\OAuth\RequestExceptionFactory;
+use F1monkey\EveEsiBundle\Dto\OAuth\Response\ErrorResponse;
+use F1monkey\EveEsiBundle\Exception\OAuth\OAuthRequestException;
+use F1monkey\EveEsiBundle\Factory\OAuth\RequestExceptionFactory;
 use GuzzleHttp\Exception\RequestException;
 use JMS\Serializer\SerializerInterface;
 use PHPUnit\Framework\ExpectationFailedException;
@@ -18,7 +18,7 @@ use RuntimeException;
 /**
  * Class RequestExceptionFactoryTest
  *
- * @package F1Monkey\EveEsiBundle\Tests\unit\Factory\OAuth
+ * @package F1monkey\EveEsiBundle\Tests\unit\Factory\OAuth
  */
 class RequestExceptionFactoryTest extends Unit
 {

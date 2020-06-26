@@ -9,7 +9,7 @@ monolog:
             path: "%kernel.logs_dir%/%kernel.environment%.log"
             level: debug
 
-f1_monkey_eve_esi:
+f1monkey_eve_esi:
     oauth:
         callback_url: 'callback'
         client_id: 'client_id'
@@ -26,7 +26,7 @@ services:
         alias: f1monkey.eve_esi.oauth.api_client
 
     test.f1monkey.eve_esi.verify_token_service:
-        alias: F1Monkey\EveEsiBundle\Service\Esi\VerifyTokenServiceInterface
+        alias: F1monkey\EveEsiBundle\Service\Esi\VerifyTokenServiceInterface
 
     test.f1monkey.eve_esi.oauth_service:
-        alias: F1Monkey\EveEsiBundle\Service\OAuth\OAuthServiceInterface
+        alias: F1monkey\EveEsiBundle\Service\OAuth\OAuthServiceInterface

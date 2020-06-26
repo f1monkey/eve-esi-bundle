@@ -1,16 +1,16 @@
 <?php
 declare(strict_types=1);
 
-namespace F1Monkey\EveEsiBundle\Factory\OAuth;
+namespace F1monkey\EveEsiBundle\Factory\OAuth;
 
-use F1Monkey\EveEsiBundle\Dto\OAuth\Request\RefreshTokenRequest;
-use F1Monkey\EveEsiBundle\Dto\OAuth\Request\VerifyCodeRequest;
-use F1Monkey\EveEsiBundle\ValueObject\RequestInterface;
+use F1monkey\EveEsiBundle\Dto\OAuth\Request\RefreshTokenRequest;
+use F1monkey\EveEsiBundle\Dto\OAuth\Request\VerifyCodeRequest;
+use F1monkey\EveEsiBundle\ValueObject\RequestInterface;
 
 /**
  * Class OAuthRequestFactory
  *
- * @package F1Monkey\EveEsiBundle\Factory\OAuth
+ * @package F1monkey\EveEsiBundle\Factory\OAuth
  *
  * @internal
  */

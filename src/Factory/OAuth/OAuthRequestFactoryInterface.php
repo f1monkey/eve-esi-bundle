@@ -1,14 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace F1Monkey\EveEsiBundle\Factory\OAuth;
+namespace F1monkey\EveEsiBundle\Factory\OAuth;
 
-use F1Monkey\EveEsiBundle\ValueObject\RequestInterface;
+use F1monkey\EveEsiBundle\ValueObject\RequestInterface;
 
 /**
  * Interface OAuthRequestFactoryInterface
  *
- * @package F1Monkey\EveEsiBundle\Factory\OAuth
+ * @package F1monkey\EveEsiBundle\Factory\OAuth
  */
 interface OAuthRequestFactoryInterface
 {

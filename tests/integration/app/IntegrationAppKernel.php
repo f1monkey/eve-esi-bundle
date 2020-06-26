@@ -40,7 +40,7 @@ class IntegrationAppKernel extends Kernel
             new FrameworkBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle(),
             new Symfony\Bundle\MonologBundle\MonologBundle(),
-            new F1Monkey\EveEsiBundle\F1MonkeyEveEsiBundle(),
+            new F1monkey\EveEsiBundle\F1monkeyEveEsiBundle(),
         ];
     }
 

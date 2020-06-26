@@ -1,14 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace F1Monkey\EveEsiBundle\Exception\ApiClient;
+namespace F1monkey\EveEsiBundle\Exception\ApiClient;
 
-use F1Monkey\EveEsiBundle\Exception\EveEsiBundleExceptionInterface;
+use F1monkey\EveEsiBundle\Exception\EveEsiBundleExceptionInterface;
 
 /**
  * Class ApiClientExceptionInterface
  *
- * @package F1Monkey\EveEsiBundle\Exception\ApiClient
+ * @package F1monkey\EveEsiBundle\Exception\ApiClient
  */
 interface ApiClientExceptionInterface extends EveEsiBundleExceptionInterface
 {

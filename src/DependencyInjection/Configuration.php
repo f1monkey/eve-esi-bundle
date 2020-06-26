@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace F1Monkey\EveEsiBundle\DependencyInjection;
+namespace F1monkey\EveEsiBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\Definition\Builder\NodeBuilder;
@@ -11,7 +11,7 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
 /**
  * Class Configuration
  *
- * @package F1Monkey\EveEsiBundle\DependencyInjection
+ * @package F1monkey\EveEsiBundle\DependencyInjection
  */
 class Configuration implements ConfigurationInterface
 {

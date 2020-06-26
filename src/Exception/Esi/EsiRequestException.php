@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace F1Monkey\EveEsiBundle\Exception\Esi;
+namespace F1monkey\EveEsiBundle\Exception\Esi;
 
-use F1Monkey\EveEsiBundle\Dto\Esi\Response\ErrorResponse;
-use F1Monkey\EveEsiBundle\Exception\ApiClient\ApiClientExceptionInterface;
+use F1monkey\EveEsiBundle\Dto\Esi\Response\ErrorResponse;
+use F1monkey\EveEsiBundle\Exception\ApiClient\ApiClientExceptionInterface;
 use RuntimeException;
 use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
 use Throwable;
@@ -12,7 +12,7 @@ use Throwable;
 /**
  * Class EsiRequestException
  *
- * @package F1Monkey\EveEsiBundle\Exception\Esi
+ * @package F1monkey\EveEsiBundle\Exception\Esi
  */
 class EsiRequestException extends RuntimeException implements EsiExceptionInterface, ApiClientExceptionInterface, HttpExceptionInterface
 {

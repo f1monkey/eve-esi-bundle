@@ -1,16 +1,16 @@
 <?php
 declare(strict_types=1);
 
-namespace F1Monkey\EveEsiBundle\Tests\integration\mocks;
+namespace F1monkey\EveEsiBundle\Tests\integration\mocks;
 
 use Doctrine\Common\Collections\Collection;
-use F1Monkey\EveEsiBundle\Dto\Scope;
+use F1monkey\EveEsiBundle\Dto\Scope;
 use JMS\Serializer\Annotation as Serializer;
 
 /**
  * Class ScopeListDto
  *
- * @package F1Monkey\EveEsiBundle\Tests\integration\mocks
+ * @package F1monkey\EveEsiBundle\Tests\integration\mocks
  */
 class ScopeListDto
 {

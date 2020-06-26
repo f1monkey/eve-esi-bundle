@@ -1,14 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace F1Monkey\EveEsiBundle\Dto\OAuth\Response;
+namespace F1monkey\EveEsiBundle\Dto\OAuth\Response;
 
 use JMS\Serializer\Annotation as Serializer;
 
 /**
  * Class TokenResponse
  *
- * @package F1Monkey\EveEsiBundle\Dto\OAuth\Response
+ * @package F1monkey\EveEsiBundle\Dto\OAuth\Response
  */
 class TokenResponse
 {

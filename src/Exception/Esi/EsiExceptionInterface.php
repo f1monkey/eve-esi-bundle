@@ -1,14 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace F1Monkey\EveEsiBundle\Exception\Esi;
+namespace F1monkey\EveEsiBundle\Exception\Esi;
 
-use F1Monkey\EveEsiBundle\Exception\EveEsiBundleExceptionInterface;
+use F1monkey\EveEsiBundle\Exception\EveEsiBundleExceptionInterface;
 
 /**
  * Interface EsiExceptionInterface
  *
- * @package F1Monkey\EveEsiBundle\Exception\Esi
+ * @package F1monkey\EveEsiBundle\Exception\Esi
  */
 interface EsiExceptionInterface extends EveEsiBundleExceptionInterface
 {

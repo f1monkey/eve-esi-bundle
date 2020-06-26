@@ -1,16 +1,16 @@
 <?php
 declare(strict_types=1);
 
-namespace F1Monkey\EveEsiBundle;
+namespace F1monkey\EveEsiBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 /**
  * Class F1MonkeyEveEsiBundle
  *
- * @package F1Monkey\EveEsiBundle
+ * @package F1monkey\EveEsiBundle
  */
-class F1MonkeyEveEsiBundle extends Bundle
+class F1monkeyEveEsiBundle extends Bundle
 {
 
 }

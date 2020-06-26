@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace F1Monkey\EveEsiBundle\Exception\OAuth;
+namespace F1monkey\EveEsiBundle\Exception\OAuth;
 
-use F1Monkey\EveEsiBundle\Dto\OAuth\Response\ErrorResponse;
-use F1Monkey\EveEsiBundle\Exception\ApiClient\ApiClientExceptionInterface;
+use F1monkey\EveEsiBundle\Dto\OAuth\Response\ErrorResponse;
+use F1monkey\EveEsiBundle\Exception\ApiClient\ApiClientExceptionInterface;
 use RuntimeException;
 use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
 use Throwable;
@@ -12,7 +12,7 @@ use Throwable;
 /**
  * Class OAuthRequestException
  *
- * @package F1Monkey\EveEsiBundle\Exception\OAuth
+ * @package F1monkey\EveEsiBundle\Exception\OAuth
  */
 class OAuthRequestException extends RuntimeException implements OAuthExceptionInterface, ApiClientExceptionInterface, HttpExceptionInterface
 {

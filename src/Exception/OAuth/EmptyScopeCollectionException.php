@@ -1,14 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace F1Monkey\EveEsiBundle\Exception\OAuth;
+namespace F1monkey\EveEsiBundle\Exception\OAuth;
 
 use OutOfBoundsException;
 
 /**
  * Class ScopesRequiredException
  *
- * @package F1Monkey\EveEsiBundle\Exception\OAuth
+ * @package F1monkey\EveEsiBundle\Exception\OAuth
  */
 class EmptyScopeCollectionException extends OutOfBoundsException implements OAuthExceptionInterface
 {

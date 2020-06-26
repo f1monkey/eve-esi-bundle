@@ -1,14 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace F1Monkey\EveEsiBundle\Factory\Esi;
+namespace F1monkey\EveEsiBundle\Factory\Esi;
 
-use F1Monkey\EveEsiBundle\ValueObject\RequestInterface;
+use F1monkey\EveEsiBundle\ValueObject\RequestInterface;
 
 /**
  * Class VerifyAccessTokenRequestFactory
  *
- * @package F1Monkey\EveEsiBundle\Factory\Esi
+ * @package F1monkey\EveEsiBundle\Factory\Esi
  */
 interface VerifyAccessTokenRequestFactoryInterface
 {

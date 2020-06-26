@@ -1,15 +1,15 @@
 <?php
 declare(strict_types=1);
 
-namespace F1Monkey\EveEsiBundle\Tests\unit\Service\ApiClient;
+namespace F1monkey\EveEsiBundle\Tests\unit\Service\ApiClient;
 
 use Codeception\Test\Unit;
 use Exception;
-use F1Monkey\EveEsiBundle\Exception\ApiClient\ApiClientExceptionInterface;
-use F1Monkey\EveEsiBundle\Exception\ApiClient\ImpossibleException;
-use F1Monkey\EveEsiBundle\Service\ApiClient\ApiClient;
-use F1Monkey\EveEsiBundle\Service\ApiClient\RequestExceptionFactoryInterface;
-use F1Monkey\EveEsiBundle\ValueObject\RequestInterface;
+use F1monkey\EveEsiBundle\Exception\ApiClient\ApiClientExceptionInterface;
+use F1monkey\EveEsiBundle\Exception\ApiClient\ImpossibleException;
+use F1monkey\EveEsiBundle\Service\ApiClient\ApiClient;
+use F1monkey\EveEsiBundle\Service\ApiClient\RequestExceptionFactoryInterface;
+use F1monkey\EveEsiBundle\ValueObject\RequestInterface;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Exception\RequestException;
@@ -23,7 +23,7 @@ use stdClass;
 /**
  * Class ApiClientTest
  *
- * @package F1Monkey\EveEsiBundle\Tests\unit\Service\ApiClient
+ * @package F1monkey\EveEsiBundle\Tests\unit\Service\ApiClient
  */
 class ApiClientTest extends Unit
 {

@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace F1Monkey\EveEsiBundle\Tests\unit\Factory\Esi;
+namespace F1monkey\EveEsiBundle\Tests\unit\Factory\Esi;
 
 use Codeception\Test\Unit;
-use F1Monkey\EveEsiBundle\Dto\Esi\Response\ErrorResponse;
-use F1Monkey\EveEsiBundle\Exception\Esi\EsiRequestException;
-use F1Monkey\EveEsiBundle\Factory\Esi\RequestExceptionFactory;
+use F1monkey\EveEsiBundle\Dto\Esi\Response\ErrorResponse;
+use F1monkey\EveEsiBundle\Exception\Esi\EsiRequestException;
+use F1monkey\EveEsiBundle\Factory\Esi\RequestExceptionFactory;
 use GuzzleHttp\Exception\RequestException;
 use JMS\Serializer\SerializerInterface;
 use PHPUnit\Framework\ExpectationFailedException;
@@ -16,7 +16,7 @@ use Psr\Http\Message\StreamInterface;
 /**
  * Class RequestExceptionFactoryTest
  *
- * @package F1Monkey\EveEsiBundle\Tests\unit\Factory\Esi
+ * @package F1monkey\EveEsiBundle\Tests\unit\Factory\Esi
  */
 class RequestExceptionFactoryTest extends Unit
 {

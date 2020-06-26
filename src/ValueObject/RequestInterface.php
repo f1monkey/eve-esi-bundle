@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace F1Monkey\EveEsiBundle\ValueObject;
+namespace F1monkey\EveEsiBundle\ValueObject;
 
 /**
  * Interface RequestInterface
  *
- * @package F1Monkey\EveEsiBundle\ValueObject
+ * @package F1monkey\EveEsiBundle\ValueObject
  */
 interface RequestInterface
 {

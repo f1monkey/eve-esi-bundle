@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace F1Monkey\EveEsiBundle\Dto;
+namespace F1monkey\EveEsiBundle\Dto;
 
 use Stringable;
 

@@ -1,21 +1,21 @@
 <?php
 declare(strict_types=1);
 
-namespace F1Monkey\EveEsiBundle\Tests\unit\Factory\OAuth;
+namespace F1monkey\EveEsiBundle\Tests\unit\Factory\OAuth;
 
 use Codeception\Test\Unit;
 use Doctrine\Common\Collections\ArrayCollection;
-use F1Monkey\EveEsiBundle\Dto\Scope;
-use F1Monkey\EveEsiBundle\Exception\OAuth\InvalidScopeCodeException;
-use F1Monkey\EveEsiBundle\Exception\OAuth\EmptyScopeCollectionException;
-use F1Monkey\EveEsiBundle\Factory\OAuth\RedirectUrlFactory;
+use F1monkey\EveEsiBundle\Dto\Scope;
+use F1monkey\EveEsiBundle\Exception\OAuth\InvalidScopeCodeException;
+use F1monkey\EveEsiBundle\Exception\OAuth\EmptyScopeCollectionException;
+use F1monkey\EveEsiBundle\Factory\OAuth\RedirectUrlFactory;
 use PHPUnit\Framework\ExpectationFailedException;
 use Sabre\Uri\InvalidUriException;
 
 /**
  * Class RedirectUrlFactoryTest
  *
- * @package F1Monkey\EveEsiBundle\Tests\unit\Factory\OAuth
+ * @package F1monkey\EveEsiBundle\Tests\unit\Factory\OAuth
  */
 class RedirectUrlFactoryTest extends Unit
 {

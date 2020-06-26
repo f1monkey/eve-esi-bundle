@@ -1,15 +1,15 @@
 <?php
 declare(strict_types=1);
 
-namespace F1Monkey\EveEsiBundle\Factory\Esi;
+namespace F1monkey\EveEsiBundle\Factory\Esi;
 
-use F1Monkey\EveEsiBundle\ValueObject\EsiRequest;
-use F1Monkey\EveEsiBundle\ValueObject\RequestInterface;
+use F1monkey\EveEsiBundle\ValueObject\EsiRequest;
+use F1monkey\EveEsiBundle\ValueObject\RequestInterface;
 
 /**
  * Class AbstractEsiRequestFactory
  *
- * @package F1Monkey\EveEsiBundle\Factory\Esi
+ * @package F1monkey\EveEsiBundle\Factory\Esi
  */
 abstract class AbstractEsiRequestFactory
 {

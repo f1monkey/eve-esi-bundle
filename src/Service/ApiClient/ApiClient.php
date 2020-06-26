@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace F1Monkey\EveEsiBundle\Service\ApiClient;
+namespace F1monkey\EveEsiBundle\Service\ApiClient;
 
-use F1Monkey\EveEsiBundle\Exception\ApiClient\ApiClientExceptionInterface;
-use F1Monkey\EveEsiBundle\Exception\ApiClient\ImpossibleException;
-use F1Monkey\EveEsiBundle\ValueObject\RequestInterface;
+use F1monkey\EveEsiBundle\Exception\ApiClient\ApiClientExceptionInterface;
+use F1monkey\EveEsiBundle\Exception\ApiClient\ImpossibleException;
+use F1monkey\EveEsiBundle\ValueObject\RequestInterface;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Exception\RequestException;
@@ -18,7 +18,7 @@ use function Sabre\Uri\resolve as resolveUrl;
 /**
  * Class ApiClient
  *
- * @package F1Monkey\EveEsiBundle\Service\ApiClient
+ * @package F1monkey\EveEsiBundle\Service\ApiClient
  *
  * @internal
  */

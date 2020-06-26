@@ -1,14 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace F1Monkey\EveEsiBundle\Factory\OAuth;
+namespace F1monkey\EveEsiBundle\Factory\OAuth;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use F1Monkey\EveEsiBundle\Dto\Scope;
-use F1Monkey\EveEsiBundle\Enum\OAuthEnum;
-use F1Monkey\EveEsiBundle\Exception\OAuth\InvalidScopeCodeException;
-use F1Monkey\EveEsiBundle\Exception\OAuth\EmptyScopeCollectionException;
+use F1monkey\EveEsiBundle\Dto\Scope;
+use F1monkey\EveEsiBundle\Enum\OAuthEnum;
+use F1monkey\EveEsiBundle\Exception\OAuth\InvalidScopeCodeException;
+use F1monkey\EveEsiBundle\Exception\OAuth\EmptyScopeCollectionException;
 use Sabre\Uri\InvalidUriException;
 use function array_merge;
 use function implode;
@@ -19,7 +19,7 @@ use function sprintf;
 /**
  * Class RedirectUrlFactory
  *
- * @package F1Monkey\EveEsiBundle\Factory\OAuth
+ * @package F1monkey\EveEsiBundle\Factory\OAuth
  *
  * @internal
  */

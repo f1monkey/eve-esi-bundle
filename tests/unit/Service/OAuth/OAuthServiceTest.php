@@ -1,26 +1,26 @@
 <?php
 declare(strict_types=1);
 
-namespace F1Monkey\EveEsiBundle\Tests\unit\Service\OAuth;
+namespace F1monkey\EveEsiBundle\Tests\unit\Service\OAuth;
 
 use Codeception\Test\Unit;
 use Doctrine\Common\Collections\ArrayCollection;
 use Exception;
-use F1Monkey\EveEsiBundle\Dto\OAuth\Response\TokenResponse;
-use F1Monkey\EveEsiBundle\Exception\ApiClient\ApiClientExceptionInterface;
-use F1Monkey\EveEsiBundle\Exception\ApiClient\RequestValidationException;
-use F1Monkey\EveEsiBundle\Exception\OAuth\EmptyScopeCollectionException;
-use F1Monkey\EveEsiBundle\Exception\OAuth\InvalidScopeCodeException;
-use F1Monkey\EveEsiBundle\Factory\OAuth\OAuthRequestFactoryInterface;
-use F1Monkey\EveEsiBundle\Factory\OAuth\RedirectUrlFactoryInterface;
-use F1Monkey\EveEsiBundle\Service\ApiClient\ApiClientInterface;
-use F1Monkey\EveEsiBundle\Service\OAuth\OAuthService;
+use F1monkey\EveEsiBundle\Dto\OAuth\Response\TokenResponse;
+use F1monkey\EveEsiBundle\Exception\ApiClient\ApiClientExceptionInterface;
+use F1monkey\EveEsiBundle\Exception\ApiClient\RequestValidationException;
+use F1monkey\EveEsiBundle\Exception\OAuth\EmptyScopeCollectionException;
+use F1monkey\EveEsiBundle\Exception\OAuth\InvalidScopeCodeException;
+use F1monkey\EveEsiBundle\Factory\OAuth\OAuthRequestFactoryInterface;
+use F1monkey\EveEsiBundle\Factory\OAuth\RedirectUrlFactoryInterface;
+use F1monkey\EveEsiBundle\Service\ApiClient\ApiClientInterface;
+use F1monkey\EveEsiBundle\Service\OAuth\OAuthService;
 use PHPUnit\Framework\ExpectationFailedException;
 
 /**
  * Class OAuthServiceTest
  *
- * @package F1Monkey\EveEsiBundle\Tests\unit\Service\OAuthService
+ * @package F1monkey\EveEsiBundle\Tests\unit\Service\OAuthService
  */
 class OAuthServiceTest extends Unit
 {

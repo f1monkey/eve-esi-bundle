@@ -1,22 +1,22 @@
 <?php
 declare(strict_types=1);
 
-namespace F1Monkey\EveEsiBundle\Tests\unit\Factory\OAuth;
+namespace F1monkey\EveEsiBundle\Tests\unit\Factory\OAuth;
 
 use Codeception\Test\Unit;
 use Exception;
-use F1Monkey\EveEsiBundle\Dto\OAuth\Request\RefreshTokenRequest;
-use F1Monkey\EveEsiBundle\Dto\OAuth\Request\VerifyCodeRequest;
-use F1Monkey\EveEsiBundle\Factory\OAuth\OAuthRequestFactory;
-use F1Monkey\EveEsiBundle\ValueObject\OAuthRequest;
-use F1Monkey\EveEsiBundle\ValueObject\RequestInterface;
+use F1monkey\EveEsiBundle\Dto\OAuth\Request\RefreshTokenRequest;
+use F1monkey\EveEsiBundle\Dto\OAuth\Request\VerifyCodeRequest;
+use F1monkey\EveEsiBundle\Factory\OAuth\OAuthRequestFactory;
+use F1monkey\EveEsiBundle\ValueObject\OAuthRequest;
+use F1monkey\EveEsiBundle\ValueObject\RequestInterface;
 use JMS\Serializer\ArrayTransformerInterface;
 use PHPUnit\Framework\ExpectationFailedException;
 
 /**
  * Class OAuthRequestFactoryTest
  *
- * @package F1Monkey\EveEsiBundle\Tests\unit\Factory\OAuth
+ * @package F1monkey\EveEsiBundle\Tests\unit\Factory\OAuth
  */
 class OAuthRequestFactoryTest extends Unit
 {

@@ -1,16 +1,16 @@
 <?php
 declare(strict_types=1);
 
-namespace F1Monkey\EveEsiBundle\Dto\OAuth\Request;
+namespace F1monkey\EveEsiBundle\Dto\OAuth\Request;
 
-use F1Monkey\EveEsiBundle\Enum\OAuthEnum;
+use F1monkey\EveEsiBundle\Enum\OAuthEnum;
 use JMS\Serializer\Annotation as Serializer;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class RefreshTokenRequest
  *
- * @package F1Monkey\EveEsiBundle\Dto\OAuth\Request
+ * @package F1monkey\EveEsiBundle\Dto\OAuth\Request
  *
  * @internal
  */

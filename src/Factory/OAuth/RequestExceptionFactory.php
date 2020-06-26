@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace F1Monkey\EveEsiBundle\Factory\OAuth;
+namespace F1monkey\EveEsiBundle\Factory\OAuth;
 
-use F1Monkey\EveEsiBundle\Dto\OAuth\Response\ErrorResponse;
-use F1Monkey\EveEsiBundle\Exception\ApiClient\ApiClientExceptionInterface;
-use F1Monkey\EveEsiBundle\Exception\OAuth\OAuthRequestException;
-use F1Monkey\EveEsiBundle\Service\ApiClient\RequestExceptionFactoryInterface;
+use F1monkey\EveEsiBundle\Dto\OAuth\Response\ErrorResponse;
+use F1monkey\EveEsiBundle\Exception\ApiClient\ApiClientExceptionInterface;
+use F1monkey\EveEsiBundle\Exception\OAuth\OAuthRequestException;
+use F1monkey\EveEsiBundle\Service\ApiClient\RequestExceptionFactoryInterface;
 use GuzzleHttp\Exception\RequestException;
 use JMS\Serializer\SerializerInterface;
 use RuntimeException;
@@ -14,7 +14,7 @@ use RuntimeException;
 /**
  * Class RequestExceptionFactory
  *
- * @package F1Monkey\EveEsiBundle\Factory\OAuth
+ * @package F1monkey\EveEsiBundle\Factory\OAuth
  */
 class RequestExceptionFactory implements RequestExceptionFactoryInterface
 {

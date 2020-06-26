@@ -12,15 +12,15 @@ Add to `config/bundles.php`:
 <?php
 return [
     // ...
-    F1Monkey\EveEsiBundle\F1MonkeyEveEsiBundle::class => ['all' => true],
+    F1monkey\EveEsiBundle\F1monkeyEveEsiBundle::class => ['all' => true],
 ];
 ```
-Create config file (i.e. `config/packages/request_handle.yaml`)
+Create config file (i.e. `config/packages/f1monkey_eve_esi.yaml`)
 
 ### Configuration
 
 ```yaml
-f1_monkey_eve_esi:
+f1monkey_eve_esi:
     oauth: # optional, if you want to use EVE SSO
         callback_url: '%env(EVE_ESI_CALLBACK_URL)%' # optional, if you need to use EVE SSO
         client_id: '%env(EVE_ESI_CLIENT_ID)%' # your app's callback url

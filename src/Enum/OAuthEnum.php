@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace F1Monkey\EveEsiBundle\Enum;
+namespace F1monkey\EveEsiBundle\Enum;
 
 /**
  * Class OAuthEnum
  *
- * @package F1Monkey\EveEsiBundle\Enum
+ * @package F1monkey\EveEsiBundle\Enum
  */
 class OAuthEnum
 {

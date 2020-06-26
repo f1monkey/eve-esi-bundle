@@ -1,15 +1,15 @@
 <?php
 declare(strict_types=1);
 
-namespace F1Monkey\EveEsiBundle\Tests\unit\Service\ApiClient;
+namespace F1monkey\EveEsiBundle\Tests\unit\Service\ApiClient;
 
 use Codeception\Test\Unit;
 use Exception;
-use F1Monkey\EveEsiBundle\Exception\ApiClient\ApiClientExceptionInterface;
-use F1Monkey\EveEsiBundle\Exception\ApiClient\RequestValidationException;
-use F1Monkey\EveEsiBundle\Service\ApiClient\ApiClientInterface;
-use F1Monkey\EveEsiBundle\Service\ApiClient\RequestValidationProxy;
-use F1Monkey\EveEsiBundle\ValueObject\RequestInterface;
+use F1monkey\EveEsiBundle\Exception\ApiClient\ApiClientExceptionInterface;
+use F1monkey\EveEsiBundle\Exception\ApiClient\RequestValidationException;
+use F1monkey\EveEsiBundle\Service\ApiClient\ApiClientInterface;
+use F1monkey\EveEsiBundle\Service\ApiClient\RequestValidationProxy;
+use F1monkey\EveEsiBundle\ValueObject\RequestInterface;
 use PHPUnit\Framework\ExpectationFailedException;
 use stdClass;
 use Symfony\Component\Validator\ConstraintViolationListInterface;
@@ -18,7 +18,7 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 /**
  * Class RequestValidationProxyTest
  *
- * @package F1Monkey\EveEsiBundle\Tests\unit\Service\ApiClient
+ * @package F1monkey\EveEsiBundle\Tests\unit\Service\ApiClient
  */
 class RequestValidationProxyTest extends Unit
 {

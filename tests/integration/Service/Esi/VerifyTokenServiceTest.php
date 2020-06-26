@@ -1,21 +1,21 @@
 <?php
 declare(strict_types=1);
 
-namespace F1Monkey\EveEsiBundle\Tests\integration\Service\Esi;
+namespace F1monkey\EveEsiBundle\Tests\integration\Service\Esi;
 
-use F1Monkey\EveEsiBundle\Exception\ApiClient\ApiClientExceptionInterface;
-use F1Monkey\EveEsiBundle\Exception\ApiClient\RequestValidationException;
-use F1Monkey\EveEsiBundle\Exception\OAuth\OAuthRequestException;
-use F1Monkey\EveEsiBundle\Service\ApiClient\ApiClient;
-use F1Monkey\EveEsiBundle\Service\Esi\VerifyTokenServiceInterface;
-use F1Monkey\EveEsiBundle\Tests\integration\AbstractIntegrationTestCase;
-use F1Monkey\EveEsiBundle\Tests\integration\mocks\HttpClientMock;
+use F1monkey\EveEsiBundle\Exception\ApiClient\ApiClientExceptionInterface;
+use F1monkey\EveEsiBundle\Exception\ApiClient\RequestValidationException;
+use F1monkey\EveEsiBundle\Exception\OAuth\OAuthRequestException;
+use F1monkey\EveEsiBundle\Service\ApiClient\ApiClient;
+use F1monkey\EveEsiBundle\Service\Esi\VerifyTokenServiceInterface;
+use F1monkey\EveEsiBundle\Tests\integration\AbstractIntegrationTestCase;
+use F1monkey\EveEsiBundle\Tests\integration\mocks\HttpClientMock;
 use PHPUnit\Framework\ExpectationFailedException;
 
 /**
  * Class VerifyTokenServiceTest
  *
- * @package F1Monkey\EveEsiBundle\Tests\integration\Service\Esi
+ * @package F1monkey\EveEsiBundle\Tests\integration\Service\Esi
  */
 class VerifyTokenServiceTest extends AbstractIntegrationTestCase
 {

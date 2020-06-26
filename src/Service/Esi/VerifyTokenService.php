@@ -1,18 +1,18 @@
 <?php
 declare(strict_types=1);
 
-namespace F1Monkey\EveEsiBundle\Service\Esi;
+namespace F1monkey\EveEsiBundle\Service\Esi;
 
-use F1Monkey\EveEsiBundle\Dto\Esi\Response\VerifyAccessTokenResponse;
-use F1Monkey\EveEsiBundle\Exception\ApiClient\ApiClientExceptionInterface;
-use F1Monkey\EveEsiBundle\Exception\ApiClient\RequestValidationException;
-use F1Monkey\EveEsiBundle\Factory\Esi\VerifyAccessTokenRequestFactoryInterface;
-use F1Monkey\EveEsiBundle\Service\ApiClient\ApiClientInterface;
+use F1monkey\EveEsiBundle\Dto\Esi\Response\VerifyAccessTokenResponse;
+use F1monkey\EveEsiBundle\Exception\ApiClient\ApiClientExceptionInterface;
+use F1monkey\EveEsiBundle\Exception\ApiClient\RequestValidationException;
+use F1monkey\EveEsiBundle\Factory\Esi\VerifyAccessTokenRequestFactoryInterface;
+use F1monkey\EveEsiBundle\Service\ApiClient\ApiClientInterface;
 
 /**
  * Class EsiService
  *
- * @package F1Monkey\EveEsiBundle\Service\Esi
+ * @package F1monkey\EveEsiBundle\Service\Esi
  */
 class VerifyTokenService implements VerifyTokenServiceInterface
 {

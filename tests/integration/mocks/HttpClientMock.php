@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace F1Monkey\EveEsiBundle\Tests\integration\mocks;
+namespace F1monkey\EveEsiBundle\Tests\integration\mocks;
 
 use Codeception\Stub;
 use GuzzleHttp\ClientInterface;
@@ -13,7 +13,7 @@ use Psr\Http\Message\StreamInterface;
 /**
  * Class HttpClientMock
  *
- * @package F1Monkey\EveEsiBundle\Tests\integration\mocks
+ * @package F1monkey\EveEsiBundle\Tests\integration\mocks
  */
 class HttpClientMock implements ClientInterface
 {

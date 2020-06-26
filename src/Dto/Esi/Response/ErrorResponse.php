@@ -1,14 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace F1Monkey\EveEsiBundle\Dto\Esi\Response;
+namespace F1monkey\EveEsiBundle\Dto\Esi\Response;
 
 use JMS\Serializer\Annotation as Serializer;
 
 /**
  * Class ErrorResponse
  *
- * @package F1Monkey\EveEsiBundle\Dto\Esi\Response
+ * @package F1monkey\EveEsiBundle\Dto\Esi\Response
  */
 class ErrorResponse
 {
