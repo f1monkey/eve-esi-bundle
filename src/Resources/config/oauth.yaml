@@ -3,9 +3,6 @@ services:
         autowire: false
         autoconfigure: false
 
-    f1monkey.eve_esi.guzzle:
-        class: GuzzleHttp\Client
-
     f1monkey.eve_esi.serializer.scope_handler:
         class: F1Monkey\EveEsiBundle\Serializer\Handler\ScopeHandler
         tags:

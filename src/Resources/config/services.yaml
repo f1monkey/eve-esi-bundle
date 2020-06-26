@@ -2,3 +2,44 @@ services:
     _defaults:
         autowire: false
         autoconfigure: false
+
+    _instanceof:
+        F1Monkey\EveEsiBundle\Factory\Esi\AbstractEsiRequestFactory:
+            calls:
+                - ['setRequestPrototype', ['@f1monkey.eve_esi.esi.request_prototype']]
+
+    f1monkey.eve_esi.guzzle:
+        class: GuzzleHttp\Client
+
+    f1monkey.eve_esi.esi.request_prototype:
+        class: F1Monkey\EveEsiBundle\ValueObject\EsiRequest
+        arguments:
+            $arrayTransformer: '@jms_serializer'
+            $baseUrl: '%f1monkey.eve_esi.esi.base_url%'
+
+    f1monkey.eve_esi.esi.request_exception_factory:
+        class: F1Monkey\EveEsiBundle\Factory\Esi\RequestExceptionFactory
+        arguments:
+            $serializer: '@jms_serializer'
+
+    f1monkey.eve_esi.esi.api_client:
+        class: F1Monkey\EveEsiBundle\Service\ApiClient\ApiClient
+        arguments:
+            $httpClient: '@f1monkey.eve_esi.guzzle'
+            $serializer: '@jms_serializer'
+            $exceptionFactory: '@f1monkey.eve_esi.esi.request_exception_factory'
+
+    f1monkey.eve_esi.esi.api_client.validation_proxy:
+        class: F1Monkey\EveEsiBundle\Service\ApiClient\RequestValidationProxy
+        arguments:
+            $validator: '@validator'
+            $apiClient: '@f1monkey.eve_esi.esi.api_client'
+
+    F1Monkey\EveEsiBundle\Factory\Esi\VerifyAccessTokenRequestFactoryInterface:
+        class: F1Monkey\EveEsiBundle\Factory\Esi\VerifyAccessTokenRequestFactory
+
+    F1Monkey\EveEsiBundle\Service\Esi\VerifyTokenServiceInterface:
+        class: F1Monkey\EveEsiBundle\Service\Esi\VerifyTokenService
+        arguments:
+            $apiClient: '@f1monkey.eve_esi.esi.api_client.validation_proxy'
+            $requestFactory: '@F1Monkey\EveEsiBundle\Factory\Esi\VerifyAccessTokenRequestFactoryInterface'

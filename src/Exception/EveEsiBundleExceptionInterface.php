@@ -10,7 +10,7 @@ use Throwable;
  *
  * @package F1Monkey\EveEsiBundle\Exception
  */
-interface EveEsiExceptionInterface extends Throwable
+interface EveEsiBundleExceptionInterface extends Throwable
 {
 
 }

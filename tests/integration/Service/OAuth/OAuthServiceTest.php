@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace F1Monkey\EveEsiBundle\Tests\integration\Service;
+namespace F1Monkey\EveEsiBundle\Tests\integration\Service\OAuth;
 
 use F1Monkey\EveEsiBundle\Exception\ApiClient\ApiClientExceptionInterface;
 use F1Monkey\EveEsiBundle\Exception\ApiClient\RequestValidationException;
@@ -9,7 +9,7 @@ use F1Monkey\EveEsiBundle\Exception\OAuth\OAuthRequestException;
 use F1Monkey\EveEsiBundle\Service\ApiClient\ApiClient;
 use F1Monkey\EveEsiBundle\Service\OAuth\OAuthServiceInterface;
 use F1Monkey\EveEsiBundle\Tests\integration\AbstractIntegrationTestCase;
-use F1Monkey\EveEsiBundle\Tests\integration\mocks\OAuthHttpClientMock;
+use F1Monkey\EveEsiBundle\Tests\integration\mocks\HttpClientMock;
 use PHPUnit\Framework\ExpectationFailedException;
 
 /**
@@ -20,16 +20,16 @@ use PHPUnit\Framework\ExpectationFailedException;
 class OAuthServiceTest extends AbstractIntegrationTestCase
 {
     /**
-     * @var OAuthHttpClientMock
+     * @var HttpClientMock
      */
-    protected OAuthHttpClientMock $httpMock;
+    protected HttpClientMock $httpMock;
 
     public function _before()
     {
         parent::_before();
         /** @var ApiClient $client */
-        $this->httpMock = new OAuthHttpClientMock();
-        $client         = $this->tester->grabService('f1monkey.eve_esi.oauth.api_client');
+        $this->httpMock = new HttpClientMock();
+        $client         = $this->tester->grabService('test.f1monkey.eve_esi.oauth.api_client');
         $client->setHttpClient($this->httpMock);
     }
 

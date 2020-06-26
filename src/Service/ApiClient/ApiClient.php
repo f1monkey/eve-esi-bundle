@@ -13,7 +13,7 @@ use JMS\Serializer\SerializerInterface;
 use RuntimeException;
 use Sabre\Uri\InvalidUriException;
 use Symfony\Component\HttpFoundation\Request;
-use function Sabre\Uri\resolve as resolve;
+use function Sabre\Uri\resolve as resolveUrl;
 
 /**
  * Class ApiClient
@@ -52,8 +52,8 @@ class ApiClient implements ApiClientInterface
         RequestExceptionFactoryInterface $exceptionFactory
     )
     {
-        $this->httpClient = $httpClient;
-        $this->serializer = $serializer;
+        $this->httpClient       = $httpClient;
+        $this->serializer       = $serializer;
         $this->exceptionFactory = $exceptionFactory;
     }
 
@@ -74,17 +74,54 @@ class ApiClient implements ApiClientInterface
      * @param string           $responseClass
      *
      * @return object
-     * @throws InvalidUriException
      * @throws ApiClientExceptionInterface
      * @throws RuntimeException
+     * @throws InvalidUriException
      */
     public function post(RequestInterface $request, string $responseClass): object
     {
         $options = $request->getPostRequestOptions();
 
+        return $this->makeRequest($request, $options, $responseClass, Request::METHOD_POST);
+    }
+
+    /**
+     * @param RequestInterface $request
+     * @param string           $responseClass
+     *
+     * @return object
+     * @throws ApiClientExceptionInterface
+     * @throws RuntimeException
+     * @throws InvalidUriException
+     */
+    public function get(RequestInterface $request, string $responseClass): object
+    {
+        $options = $request->getGetRequestOptions();
+
+        return $this->makeRequest($request, $options, $responseClass, Request::METHOD_GET);
+    }
+
+    /**
+     * @param RequestInterface     $request
+     * @param array<string, mixed> $options
+     * @param string               $responseClass
+     * @param string               $method
+     *
+     * @return object
+     * @throws ApiClientExceptionInterface
+     * @throws InvalidUriException
+     * @throws RuntimeException
+     */
+    protected function makeRequest(
+        RequestInterface $request,
+        array $options,
+        string $responseClass,
+        string $method
+    ): object
+    {
         try {
             $response = $this->httpClient->request(
-                Request::METHOD_POST,
+                $method,
                 $this->createUrl($request->getBaseUrl(), $request->getEndpoint()),
                 $options
             );
@@ -109,6 +146,6 @@ class ApiClient implements ApiClientInterface
      */
     protected function createUrl(string $baseUrl, string $endPoint): string
     {
-        return resolve($baseUrl, $endPoint);
+        return resolveUrl($baseUrl, $endPoint);
     }
 }

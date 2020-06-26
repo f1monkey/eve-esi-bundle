@@ -11,7 +11,7 @@ use Symfony\Component\Validator\ConstraintViolationListInterface;
  *
  * @package F1Monkey\EveEsiBundle\Exception
  */
-interface ValidationExceptionInterface extends EveEsiExceptionInterface
+interface ValidationExceptionInterface extends EveEsiBundleExceptionInterface
 {
     /**
      * @return ConstraintViolationListInterface<ConstraintViolationInterface>

@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace F1Monkey\EveEsiBundle\Service\ApiClient;
 
+use F1Monkey\EveEsiBundle\Exception\ApiClient\ApiClientExceptionInterface;
 use F1Monkey\EveEsiBundle\Exception\ApiClient\RequestValidationException;
 use F1Monkey\EveEsiBundle\ValueObject\RequestInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
@@ -44,14 +45,42 @@ class RequestValidationProxy implements ApiClientInterface
      *
      * @return object
      * @throws RequestValidationException
+     * @throws ApiClientExceptionInterface
      */
     public function post(RequestInterface $request, string $responseClass): object
     {
-        $violations = $this->validator->validate($request->getRequest());
-        if ($violations->count()) {
-            throw new RequestValidationException($violations, 'Request validation error');
-        }
+        $this->validateRequestData($request->getRequest());
 
         return $this->apiClient->post($request, $responseClass);
+    }
+
+    /**
+     * @param RequestInterface $request
+     * @param string           $responseClass
+     *
+     * @return object
+     * @throws RequestValidationException
+     * @throws ApiClientExceptionInterface
+     */
+    public function get(RequestInterface $request, string $responseClass): object
+    {
+        $this->validateRequestData($request->getRequest());
+
+        return $this->apiClient->get($request, $responseClass);
+    }
+
+    /**
+     * @param object|null $data
+     *
+     * @throws RequestValidationException
+     */
+    protected function validateRequestData(?object $data): void
+    {
+        if ($data !== null) {
+            $violations = $this->validator->validate($data);
+            if ($violations->count()) {
+                throw new RequestValidationException($violations, 'Request validation error');
+            }
+        }
     }
 }

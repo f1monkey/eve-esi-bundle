@@ -5,7 +5,6 @@ namespace F1Monkey\EveEsiBundle\Factory\OAuth;
 
 use F1Monkey\EveEsiBundle\Dto\OAuth\Request\RefreshTokenRequest;
 use F1Monkey\EveEsiBundle\Dto\OAuth\Request\VerifyCodeRequest;
-use F1Monkey\EveEsiBundle\Enum\OAuthEnum;
 use F1Monkey\EveEsiBundle\ValueObject\RequestInterface;
 
 /**
@@ -41,7 +40,7 @@ class OAuthRequestFactory implements OAuthRequestFactoryInterface
     {
         $requestData = new VerifyCodeRequest($authorizationCode);
 
-        return $this->doCreateRequest(OAuthEnum::ENDPOINT_TOKEN, $requestData);
+        return $this->doCreateRequest('./oauth/token', $requestData);
     }
 
     /**
@@ -53,7 +52,7 @@ class OAuthRequestFactory implements OAuthRequestFactoryInterface
     {
         $requestData = new RefreshTokenRequest($refreshToken);
 
-        return $this->doCreateRequest(OAuthEnum::ENDPOINT_TOKEN, $requestData);
+        return $this->doCreateRequest('./oauth/token', $requestData);
     }
 
     /**
@@ -62,7 +61,7 @@ class OAuthRequestFactory implements OAuthRequestFactoryInterface
      *
      * @return RequestInterface
      */
-    protected function doCreateRequest(string $endpoint, object $requestData): RequestInterface
+    protected function doCreateRequest(string $endpoint, object $requestData = null): RequestInterface
     {
         $request = clone $this->requestPrototype;
         $request->setEndpoint($endpoint)

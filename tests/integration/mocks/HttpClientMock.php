@@ -11,11 +11,11 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamInterface;
 
 /**
- * Class OAuthHttpClientMock
+ * Class HttpClientMock
  *
  * @package F1Monkey\EveEsiBundle\Tests\integration\mocks
  */
-class OAuthHttpClientMock implements ClientInterface
+class HttpClientMock implements ClientInterface
 {
     /**
      * @var string|null

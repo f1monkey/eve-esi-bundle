@@ -27,6 +27,7 @@ class Configuration implements ConfigurationInterface
         $root     = $rootNode->children();
 
         $this->addOAuthOptions($root);
+        $this->addEsiOptions($root);
 
         $rootNode->end();
 
@@ -44,7 +45,7 @@ class Configuration implements ConfigurationInterface
             ->info('EVE SSO Settings (https://developers.eveonline.com/applications)')
             ->children()
                 ->scalarNode('base_url')
-                    ->info('URL for the sso server')
+                    ->info('URL for the SSO server')
                     ->defaultValue('https://login.eveonline.com')
                     ->cannotBeEmpty()
                 ->end()
@@ -61,6 +62,25 @@ class Configuration implements ConfigurationInterface
                 ->scalarNode('callback_url')
                     ->info('Application callback URL')
                     ->isRequired()
+                    ->cannotBeEmpty()
+                ->end()
+            ->end();
+    }
+
+    /**
+     * @param NodeBuilder $node
+     */
+    protected function addEsiOptions(NodeBuilder $node): void
+    {
+        // @phpstan-ignore-next-line
+        $node
+            ->arrayNode('esi')
+            ->info('EVE ESI Settings')
+            ->addDefaultsIfNotSet()
+            ->children()
+                ->scalarNode('base_url')
+                    ->info('URL for the ESI server')
+                    ->defaultValue('https://esi.evetech.net/latest')
                     ->cannotBeEmpty()
                 ->end()
             ->end();

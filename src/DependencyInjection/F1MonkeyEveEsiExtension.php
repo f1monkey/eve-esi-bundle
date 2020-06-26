@@ -6,7 +6,6 @@ namespace F1Monkey\EveEsiBundle\DependencyInjection;
 use Exception;
 use Symfony\Component\Config\Definition\Processor;
 use Symfony\Component\Config\FileLocator;
-use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
@@ -41,6 +40,8 @@ class F1MonkeyEveEsiExtension extends Extension
             $loader->load('oauth.yaml');
         }
 
+        $this->injectEsiParameters($config['esi'], $container);
+
         $loader->load('services.yaml');
     }
 
@@ -54,5 +55,14 @@ class F1MonkeyEveEsiExtension extends Extension
         $container->setParameter('f1monkey.eve_esi.oauth.callback_url', $config['callback_url']);
         $container->setParameter('f1monkey.eve_esi.oauth.client_id', $config['client_id']);
         $container->setParameter('f1monkey.eve_esi.oauth.client_secret', $config['client_secret']);
+    }
+
+    /**
+     * @param array<string, mixed> $config
+     * @param ContainerBuilder     $container
+     */
+    protected function injectEsiParameters(array $config, ContainerBuilder $container): void
+    {
+        $container->setParameter('f1monkey.eve_esi.esi.base_url', $config['base_url']);
     }
 }

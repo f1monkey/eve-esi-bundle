@@ -21,9 +21,14 @@ interface RequestInterface
     public function getEndpoint(): string;
 
     /**
-     * @return object
+     * @return object|null
      */
-    public function getRequest(): object;
+    public function getRequest(): ?object;
+
+    /**
+     * @return array<string, mixed>
+     */
+    public function getGetRequestOptions(): array;
 
     /**
      * @return array<string, mixed>
@@ -38,9 +43,9 @@ interface RequestInterface
     public function setEndpoint(string $endpoint): RequestInterface;
 
     /**
-     * @param object $request
+     * @param object|null $request
      *
      * @return RequestInterface
      */
-    public function setRequest(object $request): RequestInterface;
+    public function setRequest(?object $request): RequestInterface;
 }

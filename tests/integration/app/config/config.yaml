@@ -19,8 +19,14 @@ services:
     _defaults:
         public: true
 
-    test.f1monkey.eve_esi.guzzle:
-        alias: f1monkey.eve_esi.guzzle
+    test.f1monkey.eve_esi.esi.api_client:
+        alias: f1monkey.eve_esi.esi.api_client
+
+    test.f1monkey.eve_esi.oauth.api_client:
+        alias: f1monkey.eve_esi.oauth.api_client
+
+    test.f1monkey.eve_esi.verify_token_service:
+        alias: F1Monkey\EveEsiBundle\Service\Esi\VerifyTokenServiceInterface
 
     test.f1monkey.eve_esi.oauth_service:
         alias: F1Monkey\EveEsiBundle\Service\OAuth\OAuthServiceInterface

@@ -22,5 +22,15 @@ interface ApiClientInterface
      * @throws RequestValidationException
      * @throws ApiClientExceptionInterface
      */
+    public function get(RequestInterface $request, string $responseClass): object;
+
+    /**
+     * @param RequestInterface $request
+     * @param string           $responseClass
+     *
+     * @return object
+     * @throws RequestValidationException
+     * @throws ApiClientExceptionInterface
+     */
     public function post(RequestInterface $request, string $responseClass): object;
 }

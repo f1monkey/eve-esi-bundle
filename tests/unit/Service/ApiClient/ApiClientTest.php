@@ -29,11 +29,11 @@ class ApiClientTest extends Unit
 {
     /**
      * @throws RuntimeException
-     * @throws InvalidUriException
      * @throws ApiClientExceptionInterface
+     * @throws InvalidUriException
      * @throws Exception
      */
-    public function testCanGetPostRequestResponseBody()
+    public function testCanPerformPostRequest()
     {
         $expected = new stdClass();
 
@@ -56,9 +56,38 @@ class ApiClientTest extends Unit
     }
 
     /**
+     * @throws RuntimeException
      * @throws ApiClientExceptionInterface
      * @throws InvalidUriException
+     * @throws Exception
+     */
+    public function testCanPerformGetRequest()
+    {
+        $expected = new stdClass();
+
+        $contents = 'contents';
+        $body     = $this->makeEmpty(StreamInterface::class, ['getContents' => $contents]);
+        $response = $this->makeEmpty(ResponseInterface::class, ['getBody' => $body]);
+        /** @var ClientInterface $guzzle */
+        $guzzle = $this->makeEmpty(ClientInterface::class, ['request' => $response]);
+        /** @var SerializerInterface $serializer */
+        $serializer = $this->makeEmpty(SerializerInterface::class, ['deserialize' => $expected]);
+        /** @var RequestExceptionFactoryInterface $exceptionFactory */
+        $exceptionFactory = $this->makeEmpty(RequestExceptionFactoryInterface::class);
+        $client           = new ApiClient($guzzle, $serializer, $exceptionFactory);
+
+        /** @var RequestInterface $request */
+        $request = $this->makeEmpty(RequestInterface::class);
+        $result  = $client->get($request, stdClass::class);
+
+        static::assertSame($expected, $result);
+    }
+
+    /**
+     * @throws ApiClientExceptionInterface
      * @throws RuntimeException
+     * @throws InvalidUriException
+     * @throws Exception
      */
     public function canThrowRequestExceptionOnRequestError()
     {
@@ -81,9 +110,7 @@ class ApiClientTest extends Unit
         /** @var RequestExceptionFactoryInterface $exceptionFactory */
         $exceptionFactory = $this->makeEmpty(
             RequestExceptionFactoryInterface::class,
-            [
-                'createRequestException' => $expected,
-            ]
+            ['createRequestException' => $expected]
         );
         $client           = new ApiClient($guzzle, $serializer, $exceptionFactory);
 
@@ -96,11 +123,11 @@ class ApiClientTest extends Unit
 
     /**
      * @throws RuntimeException
-     * @throws InvalidUriException
      * @throws ApiClientExceptionInterface
+     * @throws InvalidUriException
      * @throws Exception
      */
-    public function testCanThrowImpossibleExceptionOnPostRequest()
+    public function testCanThrowImpossibleException()
     {
         /** @var ClientInterface $guzzle */
         $guzzle = $this->makeEmpty(

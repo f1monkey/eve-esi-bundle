@@ -8,11 +8,11 @@ use JMS\Serializer\ArrayTransformerInterface;
 use LogicException;
 
 /**
- * Class OAuthRequest
+ * Class EsiRequest
  *
  * @package F1Monkey\EveEsiBundle\ValueObject
  */
-class OAuthRequest implements RequestInterface
+class EsiRequest implements RequestInterface
 {
     /**
      * @var ArrayTransformerInterface
@@ -30,14 +30,9 @@ class OAuthRequest implements RequestInterface
     protected ?string $endpoint;
 
     /**
-     * @var string
+     * @var string|null
      */
-    protected string $clientId;
-
-    /**
-     * @var string
-     */
-    protected string $clientSecret;
+    protected ?string $accessToken;
 
     /**
      * @var object|null
@@ -49,20 +44,14 @@ class OAuthRequest implements RequestInterface
      *
      * @param ArrayTransformerInterface $arrayTransformer
      * @param string                    $baseUrl
-     * @param string                    $clientId
-     * @param string                    $clientSecret
      */
     public function __construct(
         ArrayTransformerInterface $arrayTransformer,
-        string $baseUrl,
-        string $clientId,
-        string $clientSecret
+        string $baseUrl
     )
     {
         $this->arrayTransformer = $arrayTransformer;
         $this->baseUrl          = $baseUrl;
-        $this->clientId         = $clientId;
-        $this->clientSecret     = $clientSecret;
     }
 
     /**
@@ -86,6 +75,18 @@ class OAuthRequest implements RequestInterface
     }
 
     /**
+     * @param string $endpoint
+     *
+     * @return EsiRequest
+     */
+    public function setEndpoint(string $endpoint): EsiRequest
+    {
+        $this->endpoint = $endpoint;
+
+        return $this;
+    }
+
+    /**
      * @return object|null
      */
     public function getRequest(): ?object
@@ -94,13 +95,41 @@ class OAuthRequest implements RequestInterface
     }
 
     /**
+     * @param object|null $request
+     *
+     * @return EsiRequest
+     */
+    public function setRequest(?object $request): EsiRequest
+    {
+        $this->request = $request;
+
+        return $this;
+    }
+
+    /**
+     * @param string|null $accessToken
+     *
+     * @return EsiRequest
+     */
+    public function setAccessToken(?string $accessToken): EsiRequest
+    {
+        $this->accessToken = $accessToken;
+
+        return $this;
+    }
+
+    /**
      * @return array<string, mixed>
      */
     public function getGetRequestOptions(): array
     {
-        $result = [
-            RequestOptions::AUTH => [$this->clientId, $this->clientSecret],
-        ];
+        $result = [];
+
+        if ($this->accessToken !== null) {
+            $result[RequestOptions::HEADERS] = [
+                'Authorization' => sprintf('Bearer %s', $this->accessToken),
+            ];
+        }
 
         if ($this->request !== null) {
             $result[RequestOptions::QUERY] = $this->arrayTransformer->toArray($this->request);
@@ -114,9 +143,13 @@ class OAuthRequest implements RequestInterface
      */
     public function getPostRequestOptions(): array
     {
-        $result = [
-            RequestOptions::AUTH => [$this->clientId, $this->clientSecret],
-        ];
+        $result = [];
+
+        if ($this->accessToken !== null) {
+            $result[RequestOptions::HEADERS] = [
+                'Authorization' => sprintf('Bearer %s', $this->accessToken),
+            ];
+        }
 
         if ($this->request !== null) {
             $result[RequestOptions::JSON] = $this->arrayTransformer->toArray($this->request);
@@ -125,33 +158,10 @@ class OAuthRequest implements RequestInterface
         return $result;
     }
 
-    /**
-     * @param string $endpoint
-     *
-     * @return OAuthRequest
-     */
-    public function setEndpoint(string $endpoint): OAuthRequest
-    {
-        $this->endpoint = $endpoint;
-
-        return $this;
-    }
-
-    /**
-     * @param object|null $request
-     *
-     * @return OAuthRequest
-     */
-    public function setRequest(?object $request): OAuthRequest
-    {
-        $this->request = $request;
-
-        return $this;
-    }
-
     public function __clone()
     {
-        $this->endpoint = null;
-        $this->request  = null;
+        $this->endpoint    = null;
+        $this->request     = null;
+        $this->accessToken = null;
     }
 }

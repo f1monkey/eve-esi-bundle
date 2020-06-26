@@ -11,7 +11,6 @@ namespace F1Monkey\EveEsiBundle\Enum;
 class OAuthEnum
 {
     public const ENDPOINT_AUTHORIZE = '/oauth/authorize';
-    public const ENDPOINT_TOKEN = '/oauth/token';
 
     public const RESPONSE_TYPE_CODE = 'code';
 
