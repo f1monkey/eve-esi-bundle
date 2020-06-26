@@ -26,3 +26,14 @@ f1monkey_eve_esi:
         client_id: '%env(EVE_ESI_CLIENT_ID)%' # your app's callback url
         client_secret: '%env(EVE_ESI_CLIENT_SECRET)%' # your app's client secret
 ```
+
+### Testing
+
+Run Codeception tests:
+```
+$ composer test
+```
+Run the static analyzer:
+```
+$ composer phpstan
+```

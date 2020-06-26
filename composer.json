@@ -43,5 +43,9 @@
         "psr-4": {
             "F1monkey\\EveEsiBundle\\Tests\\": "tests"
         }
+    },
+    "scripts": {
+        "test": "vendor/bin/codecept run",
+        "phpstan": "vendor/bin/phpstan analyze src --level max"
     }
 }
