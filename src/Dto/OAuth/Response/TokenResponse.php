@@ -54,10 +54,14 @@ class TokenResponse
 
     /**
      * @param string $accessToken
+     *
+     * @return TokenResponse
      */
-    public function setAccessToken(string $accessToken): void
+    public function setAccessToken(string $accessToken): TokenResponse
     {
         $this->accessToken = $accessToken;
+
+        return $this;
     }
 
     /**
@@ -70,10 +74,14 @@ class TokenResponse
 
     /**
      * @param string $refreshToken
+     *
+     * @return TokenResponse
      */
-    public function setRefreshToken(string $refreshToken): void
+    public function setRefreshToken(string $refreshToken): TokenResponse
     {
         $this->refreshToken = $refreshToken;
+
+        return $this;
     }
 
     /**
@@ -86,10 +94,14 @@ class TokenResponse
 
     /**
      * @param int $expiresIn
+     *
+     * @return TokenResponse
      */
-    public function setExpiresIn(int $expiresIn): void
+    public function setExpiresIn(int $expiresIn): TokenResponse
     {
         $this->expiresIn = $expiresIn;
+
+        return $this;
     }
 
     /**
@@ -102,9 +114,13 @@ class TokenResponse
 
     /**
      * @param string $tokenType
+     *
+     * @return TokenResponse
      */
-    public function setTokenType(string $tokenType): void
+    public function setTokenType(string $tokenType): TokenResponse
     {
         $this->tokenType = $tokenType;
+
+        return $this;
     }
 }
