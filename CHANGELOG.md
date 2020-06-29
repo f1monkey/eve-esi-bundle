@@ -1,3 +1,12 @@
+# 0.1.3 (2020-06-29)
+
+
+### Bug Fixes
+
+* Exclude IDE settings from composer package ([619d650](https://github.com/f1monkey/eve-esi-bundle/commit/619d65075ed4d28c2ddfeb332373e63ece630eb5))
+
+
+
 # 0.1.2 (2020-06-29)
 
 
