@@ -22,6 +22,16 @@ class HttpClientMock implements ClientInterface
      */
     protected ?string $response;
 
+    /**
+     * @var string|null
+     */
+    protected ?string $lastRequestUrl = null;
+
+    /**
+     * @var array|null
+     */
+    protected ?array $lastRequestOptions = null;
+
     public function request($method, $uri, array $options = [])
     {
         $body = Stub::makeEmpty(
@@ -30,6 +40,9 @@ class HttpClientMock implements ClientInterface
                 'getContents' => $this->response,
             ]
         );
+
+        $this->lastRequestUrl     = $uri;
+        $this->lastRequestOptions = $options;
 
         return Stub::makeEmpty(
             ResponseInterface::class,
@@ -65,5 +78,21 @@ class HttpClientMock implements ClientInterface
     public function setResponse(string $response): void
     {
         $this->response = $response;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getLastRequestUrl(): ?string
+    {
+        return $this->lastRequestUrl;
+    }
+
+    /**
+     * @return array|null
+     */
+    public function getLastRequestOptions(): ?array
+    {
+        return $this->lastRequestOptions;
     }
 }

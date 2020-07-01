@@ -6,10 +6,7 @@ namespace F1monkey\EveEsiBundle\Tests\integration\Service\Esi;
 use F1monkey\EveEsiBundle\Exception\ApiClient\ApiClientExceptionInterface;
 use F1monkey\EveEsiBundle\Exception\ApiClient\RequestValidationException;
 use F1monkey\EveEsiBundle\Exception\OAuth\OAuthRequestException;
-use F1monkey\EveEsiBundle\Service\ApiClient\ApiClient;
 use F1monkey\EveEsiBundle\Service\Esi\VerifyTokenServiceInterface;
-use F1monkey\EveEsiBundle\Tests\integration\AbstractIntegrationTestCase;
-use F1monkey\EveEsiBundle\Tests\integration\mocks\HttpClientMock;
 use PHPUnit\Framework\ExpectationFailedException;
 
 /**
@@ -17,22 +14,8 @@ use PHPUnit\Framework\ExpectationFailedException;
  *
  * @package F1monkey\EveEsiBundle\Tests\integration\Service\Esi
  */
-class VerifyTokenServiceTest extends AbstractIntegrationTestCase
+class VerifyTokenServiceTest extends AbstractEsiTestCase
 {
-    /**
-     * @var HttpClientMock
-     */
-    protected HttpClientMock $httpMock;
-
-    public function _before()
-    {
-        parent::_before();
-        /** @var ApiClient $client */
-        $this->httpMock = new HttpClientMock();
-        $client         = $this->tester->grabService('test.f1monkey.eve_esi.esi.api_client');
-        $client->setHttpClient($this->httpMock);
-    }
-
     /**
      * @throws ApiClientExceptionInterface
      * @throws RequestValidationException
