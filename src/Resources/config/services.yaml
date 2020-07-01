@@ -43,3 +43,12 @@ services:
         arguments:
             $apiClient: '@f1monkey.eve_esi.esi.api_client.validation_proxy'
             $requestFactory: '@F1monkey\EveEsiBundle\Factory\Esi\VerifyAccessTokenRequestFactoryInterface'
+
+    F1monkey\EveEsiBundle\Factory\Esi\MarketRequestFactoryInterface:
+        class: F1monkey\EveEsiBundle\Factory\Esi\MarketRequestFactory
+
+    F1monkey\EveEsiBundle\Service\Esi\MarketServiceInterface:
+        class: F1monkey\EveEsiBundle\Service\Esi\MarketService
+        arguments:
+            $apiClient: '@f1monkey.eve_esi.esi.api_client.validation_proxy'
+            $requestFactory: '@F1monkey\EveEsiBundle\Factory\Esi\MarketRequestFactoryInterface'

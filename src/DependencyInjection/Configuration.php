@@ -80,7 +80,7 @@ class Configuration implements ConfigurationInterface
             ->children()
                 ->scalarNode('base_url')
                     ->info('URL for the ESI server')
-                    ->defaultValue('https://esi.evetech.net/latest')
+                    ->defaultValue('https://esi.evetech.net')
                     ->cannotBeEmpty()
                 ->end()
             ->end();
