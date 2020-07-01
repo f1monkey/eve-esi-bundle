@@ -1,14 +1,15 @@
 <?php
 declare(strict_types=1);
 
-namespace F1monkey\EveEsiBundle\Dto\OAuth\Request;
+namespace F1monkey\EveEsiBundle\Dto\Esi\Request;
 
 use JMS\Serializer\Annotation as Serializer;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class GenericPaginatedRequest
  *
- * @package F1monkey\EveEsiBundle\Dto\OAuth\Request
+ * @package F1monkey\EveEsiBundle\Dto\Esi\Request
  */
 class GenericPaginatedRequest
 {
@@ -17,6 +18,8 @@ class GenericPaginatedRequest
      *
      * @Serializer\SerializedName("page")
      * @Serializer\Type("int")
+     *
+     * @Assert\GreaterThan(0)
      */
     protected ?int $page;
 
@@ -28,5 +31,13 @@ class GenericPaginatedRequest
     public function __construct(?int $page)
     {
         $this->page = $page;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getPage(): ?int
+    {
+        return $this->page;
     }
 }

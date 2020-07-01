@@ -24,4 +24,12 @@ interface MarketRequestFactoryInterface
         int $characterId,
         int $page = null
     ): RequestInterface;
+
+    /**
+     * @param string $accessToken
+     * @param int    $characterId
+     *
+     * @return RequestInterface
+     */
+    public function createV2CharactersOrdersRequest(string $accessToken, int $characterId): RequestInterface;
 }

@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace F1monkey\EveEsiBundle\Factory\Esi;
 
-use F1monkey\EveEsiBundle\Dto\OAuth\Request\GenericPaginatedRequest;
+use F1monkey\EveEsiBundle\Dto\Esi\Request\GenericPaginatedRequest;
 use F1monkey\EveEsiBundle\ValueObject\RequestInterface;
 
 /**
@@ -16,8 +16,8 @@ use F1monkey\EveEsiBundle\ValueObject\RequestInterface;
 class MarketRequestFactory extends AbstractEsiRequestFactory implements MarketRequestFactoryInterface
 {
     /**
-     * @param string $accessToken
-     * @param int $characterId
+     * @param string   $accessToken
+     * @param int      $characterId
      * @param int|null $page
      *
      * @return RequestInterface
@@ -32,6 +32,20 @@ class MarketRequestFactory extends AbstractEsiRequestFactory implements MarketRe
             sprintf('/v1/characters/%s/orders/history/', $characterId),
             $accessToken,
             new GenericPaginatedRequest($page)
+        );
+    }
+
+    /**
+     * @param string $accessToken
+     * @param int    $characterId
+     *
+     * @return RequestInterface
+     */
+    public function createV2CharactersOrdersRequest(string $accessToken, int $characterId): RequestInterface
+    {
+        return $this->doCreateRequest(
+            sprintf('/v2/characters/%s/orders/', $characterId),
+            $accessToken
         );
     }
 }
