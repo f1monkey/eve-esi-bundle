@@ -138,6 +138,25 @@ class MyService
 }
 ```
 
+### Using ETag
+
+Request methods having `$eTag` argument should be cacheable.
+Response will contain a cache tag (see [HasETagInterface](./src/Dto/Esi/Response/HasETagInterface.php)).
+If you pass this value in the next call and value is not changed, you will get NotModifiedException. It means you should use cached response data.
+Example:
+```php
+<?php
+
+/** @var \F1monkey\EveEsiBundle\Service\Esi\MarketServiceInterface $service */
+$response = $service->getV2CharactersOrders('token', 123456);
+
+$eTag = $response->getEtag();
+try {
+    $response = $service->getV2CharactersOrders('token', 123456, $eTag);
+} catch (\F1monkey\EveEsiBundle\Exception\Esi\NotModifiedException $e) {
+    // use previous response
+}
+```
 ### Testing
 
 Run Codeception tests:

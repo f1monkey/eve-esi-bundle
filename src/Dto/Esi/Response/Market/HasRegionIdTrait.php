@@ -31,7 +31,7 @@ trait HasRegionIdTrait
     /**
      * @param int $regionId
      *
-     * @return HasRegionIdTrait
+     * @return $this
      */
     public function setRegionId(int $regionId)
     {

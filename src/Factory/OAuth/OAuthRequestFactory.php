@@ -65,7 +65,7 @@ class OAuthRequestFactory implements OAuthRequestFactoryInterface
     {
         $request = clone $this->requestPrototype;
         $request->setEndpoint($endpoint)
-                ->setRequest($requestData);
+                ->setQuery($requestData);
 
         return $request;
     }

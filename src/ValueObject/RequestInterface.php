@@ -7,6 +7,8 @@ namespace F1monkey\EveEsiBundle\ValueObject;
  * Interface RequestInterface
  *
  * @package F1monkey\EveEsiBundle\ValueObject
+ *
+ * @internal
  */
 interface RequestInterface
 {
@@ -21,31 +23,51 @@ interface RequestInterface
     public function getEndpoint(): string;
 
     /**
-     * @return object|null
-     */
-    public function getRequest(): ?object;
-
-    /**
-     * @return array<string, mixed>
-     */
-    public function getGetRequestOptions(): array;
-
-    /**
-     * @return array<string, mixed>
-     */
-    public function getPostRequestOptions(): array;
-
-    /**
      * @param string $endpoint
      *
-     * @return RequestInterface
+     * @return $this
      */
-    public function setEndpoint(string $endpoint): RequestInterface;
+    public function setEndpoint(string $endpoint);
 
     /**
-     * @param object|null $request
-     *
-     * @return RequestInterface
+     * @return object|null
      */
-    public function setRequest(?object $request): RequestInterface;
+    public function getQuery(): ?object;
+
+    /**
+     * @param object|null $query
+     *
+     * @return $this
+     */
+    public function setQuery(?object $query);
+
+    /**
+     * @return object|null
+     */
+    public function getBody(): ?object;
+
+    /**
+     * @param object|null $body
+     *
+     * @return $this
+     */
+    public function setBody(?object $body);
+
+    /**
+     * @return array<string, string>
+     */
+    public function getHeaders(): array;
+
+    /**
+     * @param string $header
+     * @param string $value
+     *
+     * @return $this
+     */
+    public function setHeader(string $header, string $value);
+
+    /**
+     * @return array<string, mixed>
+     */
+    public function getRequestOptions(): array;
 }

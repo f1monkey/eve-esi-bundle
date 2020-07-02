@@ -16,36 +16,48 @@ use F1monkey\EveEsiBundle\ValueObject\RequestInterface;
 class MarketRequestFactory extends AbstractEsiRequestFactory implements MarketRequestFactoryInterface
 {
     /**
-     * @param string   $accessToken
-     * @param int      $characterId
-     * @param int|null $page
+     * @param string      $accessToken
+     * @param int         $characterId
+     * @param int|null    $page
+     * @param string|null $eTag
      *
      * @return RequestInterface
      */
     public function createV1CharacterOrderHistoryRequest(
         string $accessToken,
         int $characterId,
-        int $page = null
+        int $page = null,
+        string $eTag = null
     ): RequestInterface
     {
         return $this->doCreateRequest(
             sprintf('/v1/characters/%s/orders/history/', $characterId),
             $accessToken,
-            new GenericPaginatedRequest($page)
+            new GenericPaginatedRequest($page),
+            null,
+            $eTag
         );
     }
 
     /**
-     * @param string $accessToken
-     * @param int    $characterId
+     * @param string      $accessToken
+     * @param int         $characterId
+     * @param string|null $eTag
      *
      * @return RequestInterface
      */
-    public function createV2CharactersOrdersRequest(string $accessToken, int $characterId): RequestInterface
+    public function createV2CharactersOrdersRequest(
+        string $accessToken,
+        int $characterId,
+        string $eTag = null
+    ): RequestInterface
     {
         return $this->doCreateRequest(
             sprintf('/v2/characters/%s/orders/', $characterId),
-            $accessToken
+            $accessToken,
+            null,
+            null,
+            $eTag
         );
     }
 }

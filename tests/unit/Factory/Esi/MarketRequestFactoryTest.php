@@ -40,9 +40,9 @@ class MarketRequestFactoryTest extends Unit
         $characterId = 123;
         $result      = $factory->createV1CharacterOrderHistoryRequest($token, $characterId, $page);
 
-        static::assertArrayHasKey('Authorization', $result->getGetRequestOptions()['headers']);
-        static::assertInstanceOf(GenericPaginatedRequest::class, $result->getRequest());
-        static::assertEquals($page, $result->getRequest()->getPage());
+        static::assertArrayHasKey('Authorization', $result->getRequestOptions()['headers']);
+        static::assertInstanceOf(GenericPaginatedRequest::class, $result->getQuery());
+        static::assertEquals($page, $result->getQuery()->getPage());
     }
 
     /**
@@ -63,8 +63,8 @@ class MarketRequestFactoryTest extends Unit
         $characterId = 123;
         $result      = $factory->createV2CharactersOrdersRequest($token, $characterId);
 
-        static::assertArrayHasKey('Authorization', $result->getGetRequestOptions()['headers']);
-        static::assertNull($result->getRequest());
+        static::assertArrayHasKey('Authorization', $result->getRequestOptions()['headers']);
+        static::assertNull($result->getQuery());
     }
 
     /**

@@ -5,6 +5,7 @@ namespace F1monkey\EveEsiBundle\Service\ApiClient;
 
 use F1monkey\EveEsiBundle\Exception\ApiClient\ApiClientExceptionInterface;
 use F1monkey\EveEsiBundle\Exception\ApiClient\RequestValidationException;
+use F1monkey\EveEsiBundle\Exception\Esi\NotModifiedException;
 use F1monkey\EveEsiBundle\ValueObject\RequestInterface;
 
 /**
@@ -20,6 +21,7 @@ interface ApiClientInterface
      *
      * @return object
      * @throws RequestValidationException
+     * @throws NotModifiedException
      * @throws ApiClientExceptionInterface
      */
     public function get(RequestInterface $request, string $responseClass): object;
@@ -30,6 +32,7 @@ interface ApiClientInterface
      *
      * @return object
      * @throws RequestValidationException
+     * @throws NotModifiedException
      * @throws ApiClientExceptionInterface
      */
     public function post(RequestInterface $request, string $responseClass): object;

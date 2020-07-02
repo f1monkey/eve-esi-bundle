@@ -7,6 +7,7 @@ use Codeception\Test\Unit;
 use Exception;
 use F1monkey\EveEsiBundle\Exception\ApiClient\ApiClientExceptionInterface;
 use F1monkey\EveEsiBundle\Exception\ApiClient\ImpossibleException;
+use F1monkey\EveEsiBundle\Exception\Esi\NotModifiedException;
 use F1monkey\EveEsiBundle\Service\ApiClient\ApiClient;
 use F1monkey\EveEsiBundle\Service\ApiClient\RequestExceptionFactoryInterface;
 use F1monkey\EveEsiBundle\ValueObject\RequestInterface;
@@ -19,6 +20,8 @@ use Psr\Http\Message\StreamInterface;
 use RuntimeException;
 use Sabre\Uri\InvalidUriException;
 use stdClass;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 
 /**
  * Class ApiClientTest
@@ -46,7 +49,9 @@ class ApiClientTest extends Unit
         $serializer = $this->makeEmpty(SerializerInterface::class, ['deserialize' => $expected]);
         /** @var RequestExceptionFactoryInterface $exceptionFactory */
         $exceptionFactory = $this->makeEmpty(RequestExceptionFactoryInterface::class);
-        $client           = new ApiClient($guzzle, $serializer, $exceptionFactory);
+        /** @var EventDispatcherInterface $dispatcher */
+        $dispatcher = $this->makeEmpty(EventDispatcherInterface::class);
+        $client     = new ApiClient($guzzle, $serializer, $dispatcher, $exceptionFactory);
 
         /** @var RequestInterface $request */
         $request = $this->makeEmpty(RequestInterface::class);
@@ -74,7 +79,9 @@ class ApiClientTest extends Unit
         $serializer = $this->makeEmpty(SerializerInterface::class, ['deserialize' => $expected]);
         /** @var RequestExceptionFactoryInterface $exceptionFactory */
         $exceptionFactory = $this->makeEmpty(RequestExceptionFactoryInterface::class);
-        $client           = new ApiClient($guzzle, $serializer, $exceptionFactory);
+        /** @var EventDispatcherInterface $dispatcher */
+        $dispatcher = $this->makeEmpty(EventDispatcherInterface::class);
+        $client     = new ApiClient($guzzle, $serializer, $dispatcher, $exceptionFactory);
 
         /** @var RequestInterface $request */
         $request = $this->makeEmpty(RequestInterface::class);
@@ -112,12 +119,41 @@ class ApiClientTest extends Unit
             RequestExceptionFactoryInterface::class,
             ['createRequestException' => $expected]
         );
-        $client           = new ApiClient($guzzle, $serializer, $exceptionFactory);
+        /** @var EventDispatcherInterface $dispatcher */
+        $dispatcher = $this->makeEmpty(EventDispatcherInterface::class);
+        $client     = new ApiClient($guzzle, $serializer, $dispatcher, $exceptionFactory);
 
         /** @var RequestInterface $request */
         $request = $this->makeEmpty(RequestInterface::class);
 
         $this->expectException(ApiClientExceptionInterface::class);
+        $client->post($request, stdClass::class);
+    }
+
+    /**
+     * @throws RuntimeException
+     * @throws ApiClientExceptionInterface
+     * @throws InvalidUriException
+     * @throws Exception
+     */
+    public function testCanThrowNotModifiedException()
+    {
+        $body     = $this->makeEmpty(StreamInterface::class, ['getContents' => '']);
+        $response = $this->makeEmpty(ResponseInterface::class, ['getBody' => $body, 'getStatusCode' => Response::HTTP_NOT_MODIFIED]);
+        /** @var ClientInterface $guzzle */
+        $guzzle = $this->makeEmpty(ClientInterface::class, ['request' => $response]);
+        /** @var SerializerInterface $serializer */
+        $serializer = $this->makeEmpty(SerializerInterface::class);
+        /** @var RequestExceptionFactoryInterface $exceptionFactory */
+        $exceptionFactory = $this->makeEmpty(RequestExceptionFactoryInterface::class);
+        /** @var EventDispatcherInterface $dispatcher */
+        $dispatcher = $this->makeEmpty(EventDispatcherInterface::class);
+        $client     = new ApiClient($guzzle, $serializer, $dispatcher, $exceptionFactory);
+
+        /** @var RequestInterface $request */
+        $request = $this->makeEmpty(RequestInterface::class);
+
+        $this->expectException(NotModifiedException::class);
         $client->post($request, stdClass::class);
     }
 
@@ -143,7 +179,9 @@ class ApiClientTest extends Unit
         $serializer = $this->makeEmpty(SerializerInterface::class);
         /** @var RequestExceptionFactoryInterface $exceptionFactory */
         $exceptionFactory = $this->makeEmpty(RequestExceptionFactoryInterface::class);
-        $client           = new ApiClient($guzzle, $serializer, $exceptionFactory);
+        /** @var EventDispatcherInterface $dispatcher */
+        $dispatcher = $this->makeEmpty(EventDispatcherInterface::class);
+        $client     = new ApiClient($guzzle, $serializer, $dispatcher, $exceptionFactory);
 
         /** @var RequestInterface $request */
         $request = $this->makeEmpty(RequestInterface::class);

@@ -22,11 +22,18 @@ services:
         arguments:
             $serializer: '@jms_serializer'
 
+    F1monkey\EveEsiBundle\EventListener\RequestListener:
+        class: F1monkey\EveEsiBundle\EventListener\RequestListener
+        tags:
+            - { name: 'kernel.event_listener', event: F1monkey\EveEsiBundle\Event\RequestAfterEvent, method: 'injectEsiResponseMetadata' }
+            - { name: 'kernel.event_listener', event: F1monkey\EveEsiBundle\Event\RequestAfterEvent, method: 'injectEsiResponseMetadata' }
+
     f1monkey.eve_esi.esi.api_client:
         class: F1monkey\EveEsiBundle\Service\ApiClient\ApiClient
         arguments:
             $httpClient: '@f1monkey.eve_esi.guzzle'
             $serializer: '@jms_serializer'
+            $eventDispatcher: '@event_dispatcher'
             $exceptionFactory: '@f1monkey.eve_esi.esi.request_exception_factory'
 
     f1monkey.eve_esi.esi.api_client.validation_proxy:
