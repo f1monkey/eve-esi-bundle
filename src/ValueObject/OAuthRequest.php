@@ -37,18 +37,21 @@ class OAuthRequest implements RequestInterface
      * @param string                    $baseUrl
      * @param string                    $clientId
      * @param string                    $clientSecret
+     * @param string|null               $userAgent
      */
     public function __construct(
         ArrayTransformerInterface $arrayTransformer,
         string $baseUrl,
         string $clientId,
-        string $clientSecret
+        string $clientSecret,
+        string $userAgent = null
     )
     {
         $this->arrayTransformer = $arrayTransformer;
         $this->baseUrl          = $baseUrl;
         $this->clientId         = $clientId;
         $this->clientSecret     = $clientSecret;
+        $this->userAgent        = $userAgent;
     }
 
     /**
@@ -57,8 +60,13 @@ class OAuthRequest implements RequestInterface
     public function getRequestOptions(): array
     {
         $result = [
-            RequestOptions::AUTH => [$this->clientId, $this->clientSecret],
+            RequestOptions::HEADERS => $this->headers,
+            RequestOptions::AUTH    => [$this->clientId, $this->clientSecret],
         ];
+
+        if ($this->userAgent !== null) {
+            $result[RequestOptions::HEADERS]['User-Agent'] = $this->userAgent;
+        }
 
         if ($this->query !== null) {
             $result[RequestOptions::QUERY] = $this->arrayTransformer->toArray($this->query);

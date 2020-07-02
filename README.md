@@ -22,6 +22,7 @@ Create config file (i.e. `config/packages/f1monkey_eve_esi.yaml`)
 
 ```yaml
 f1monkey_eve_esi:
+    user_agent: 'Test/1.0' # example User-Agent header for SSO/ESI requests, default is null, optional parameter
     oauth: # required if you want to use EVE SSO, otherwise can be skipped
         callback_url: '%env(EVE_ESI_CALLBACK_URL)%' # your app's callback url (same as in your application settings)
         client_id: '%env(EVE_ESI_CLIENT_ID)%' # your app's client id
@@ -138,9 +139,10 @@ class MyService
 }
 ```
 
-##### Using ETag
+### Using ETag
 
-Request methods having `$eTag` argument should be cacheable.
+Request methods having `$eTag` argument should be cacheable ([docs](https://developers.eveonline.com/blog/article/esi-etag-best-practices)).
+
 Response will contain a cache tag (see [HasETagInterface](./src/Dto/Esi/Response/HasETagInterface.php)).
 If you pass this value in the next call and value is not changed, you will get NotModifiedException. It means you should use cached response data.
 Example:

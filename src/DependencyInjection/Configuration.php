@@ -26,12 +26,24 @@ class Configuration implements ConfigurationInterface
         $rootNode = $treeBuilder->getRootNode();
         $root     = $rootNode->children();
 
+        $this->addGeneralOptions($root);
         $this->addOAuthOptions($root);
         $this->addEsiOptions($root);
 
         $rootNode->end();
 
         return $treeBuilder;
+    }
+
+    /**
+     * @param NodeBuilder $node
+     */
+    protected function addGeneralOptions(NodeBuilder $node): void
+    {
+        $node
+            ->scalarNode('user_agent')
+                ->info('User-Agent header')
+            ->end();
     }
 
     /**
