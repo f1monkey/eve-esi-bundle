@@ -1,17 +1,17 @@
 <?php
 declare(strict_types=1);
 
-namespace F1monkey\EveEsiBundle\Dto\OAuth\Response\Market;
+namespace F1monkey\EveEsiBundle\Dto\Esi\Response\Market;
 
 use DateTimeInterface;
 use JMS\Serializer\Annotation as Serializer;
 
 /**
- * Class V1CharactersOrdersHistoryResponse
+ * Trait OrderTrait
  *
- * @package F1monkey\EveEsiBundle\Dto\OAuth\Response\Market
+ * @package F1monkey\EveEsiBundle\Dto\Esi\Response\Market
  */
-class V1CharactersOrdersHistoryResponse
+trait OrderTrait
 {
     /**
      * @var int
@@ -22,28 +22,12 @@ class V1CharactersOrdersHistoryResponse
     protected int $duration;
 
     /**
-     * @var float
-     *
-     * @Serializer\SerializedName("escrow")
-     * @Serializer\Type("float")
-     */
-    protected float $escrow;
-
-    /**
      * @var bool
      *
      * @Serializer\SerializedName("is_buy_order")
      * @Serializer\Type("boolean")
      */
-    protected bool $isBuyOrder;
-
-    /**
-     * @var bool
-     *
-     * @Serializer\SerializedName("is_corporation")
-     * @Serializer\Type("boolean")
-     */
-    protected bool $isCorporation;
+    protected bool $isBuyOrder = false;
 
     /**
      * @var DateTimeInterface
@@ -96,22 +80,6 @@ class V1CharactersOrdersHistoryResponse
     /**
      * @var int
      *
-     * @Serializer\SerializedName("region_id")
-     * @Serializer\Type("int")
-     */
-    protected int $regionId;
-
-    /**
-     * @var string
-     *
-     * @Serializer\SerializedName("state")
-     * @Serializer\Type("string")
-     */
-    protected string $state;
-
-    /**
-     * @var int
-     *
      * @Serializer\SerializedName("type_id")
      * @Serializer\Type("int")
      */
@@ -154,26 +122,6 @@ class V1CharactersOrdersHistoryResponse
     }
 
     /**
-     * @return float
-     */
-    public function getEscrow(): float
-    {
-        return $this->escrow;
-    }
-
-    /**
-     * @param float $escrow
-     *
-     * @return $this
-     */
-    public function setEscrow(float $escrow)
-    {
-        $this->escrow = $escrow;
-
-        return $this;
-    }
-
-    /**
      * @return bool
      */
     public function isBuyOrder(): bool
@@ -189,26 +137,6 @@ class V1CharactersOrdersHistoryResponse
     public function setIsBuyOrder(bool $isBuyOrder)
     {
         $this->isBuyOrder = $isBuyOrder;
-
-        return $this;
-    }
-
-    /**
-     * @return bool
-     */
-    public function isCorporation(): bool
-    {
-        return $this->isCorporation;
-    }
-
-    /**
-     * @param bool $isCorporation
-     *
-     * @return $this
-     */
-    public function setIsCorporation(bool $isCorporation)
-    {
-        $this->isCorporation = $isCorporation;
 
         return $this;
     }
@@ -329,46 +257,6 @@ class V1CharactersOrdersHistoryResponse
     public function setRange(string $range)
     {
         $this->range = $range;
-
-        return $this;
-    }
-
-    /**
-     * @return int
-     */
-    public function getRegionId(): int
-    {
-        return $this->regionId;
-    }
-
-    /**
-     * @param int $regionId
-     *
-     * @return $this
-     */
-    public function setRegionId(int $regionId)
-    {
-        $this->regionId = $regionId;
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getState(): string
-    {
-        return $this->state;
-    }
-
-    /**
-     * @param string $state
-     *
-     * @return $this
-     */
-    public function setState(string $state)
-    {
-        $this->state = $state;
 
         return $this;
     }

@@ -3,8 +3,11 @@ declare(strict_types=1);
 
 namespace F1monkey\EveEsiBundle\Service\ApiClient;
 
+use F1monkey\EveEsiBundle\Event\RequestAfterEvent;
+use F1monkey\EveEsiBundle\Event\RequestBeforeEvent;
 use F1monkey\EveEsiBundle\Exception\ApiClient\ApiClientExceptionInterface;
 use F1monkey\EveEsiBundle\Exception\ApiClient\ImpossibleException;
+use F1monkey\EveEsiBundle\Exception\Esi\NotModifiedException;
 use F1monkey\EveEsiBundle\ValueObject\RequestInterface;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\GuzzleException;
@@ -13,6 +16,8 @@ use JMS\Serializer\SerializerInterface;
 use RuntimeException;
 use Sabre\Uri\InvalidUriException;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 use function Sabre\Uri\resolve as resolveUrl;
 
 /**
@@ -35,6 +40,11 @@ class ApiClient implements ApiClientInterface
     protected SerializerInterface $serializer;
 
     /**
+     * @var EventDispatcherInterface
+     */
+    protected EventDispatcherInterface $eventDispatcher;
+
+    /**
      * @var RequestExceptionFactoryInterface
      */
     protected RequestExceptionFactoryInterface $exceptionFactory;
@@ -44,16 +54,19 @@ class ApiClient implements ApiClientInterface
      *
      * @param ClientInterface                  $httpClient
      * @param SerializerInterface              $serializer
+     * @param EventDispatcherInterface         $eventDispatcher
      * @param RequestExceptionFactoryInterface $exceptionFactory
      */
     public function __construct(
         ClientInterface $httpClient,
         SerializerInterface $serializer,
+        EventDispatcherInterface $eventDispatcher,
         RequestExceptionFactoryInterface $exceptionFactory
     )
     {
         $this->httpClient       = $httpClient;
         $this->serializer       = $serializer;
+        $this->eventDispatcher  = $eventDispatcher;
         $this->exceptionFactory = $exceptionFactory;
     }
 
@@ -75,12 +88,13 @@ class ApiClient implements ApiClientInterface
      *
      * @return object
      * @throws ApiClientExceptionInterface
+     * @throws NotModifiedException
      * @throws RuntimeException
      * @throws InvalidUriException
      */
     public function post(RequestInterface $request, string $responseClass): object
     {
-        $options = $request->getPostRequestOptions();
+        $options = $request->getRequestOptions();
 
         return $this->makeRequest($request, $options, $responseClass, Request::METHOD_POST);
     }
@@ -91,12 +105,13 @@ class ApiClient implements ApiClientInterface
      *
      * @return object
      * @throws ApiClientExceptionInterface
+     * @throws NotModifiedException
      * @throws RuntimeException
      * @throws InvalidUriException
      */
     public function get(RequestInterface $request, string $responseClass): object
     {
-        $options = $request->getGetRequestOptions();
+        $options = $request->getRequestOptions();
 
         return $this->makeRequest($request, $options, $responseClass, Request::METHOD_GET);
     }
@@ -108,6 +123,7 @@ class ApiClient implements ApiClientInterface
      * @param string               $method
      *
      * @return object
+     * @throws NotModifiedException
      * @throws ApiClientExceptionInterface
      * @throws InvalidUriException
      * @throws RuntimeException
@@ -119,11 +135,14 @@ class ApiClient implements ApiClientInterface
         string $method
     ): object
     {
+        $event = new RequestBeforeEvent($request, $options);
+        $this->eventDispatcher->dispatch($event);
+
         try {
             $response = $this->httpClient->request(
                 $method,
                 $this->createUrl($request->getBaseUrl(), $request->getEndpoint()),
-                $options
+                $event->getOptions()
             );
         } catch (GuzzleException $e) {
             if ($e instanceof RequestException) {
@@ -133,8 +152,17 @@ class ApiClient implements ApiClientInterface
             throw new ImpossibleException($e->getMessage(), $e->getCode(), $e);
         }
 
+        if ($response->getStatusCode() === Response::HTTP_NOT_MODIFIED) {
+            throw new NotModifiedException('Not modified');
+        }
+
         // @phpstan-ignore-next-line
-        return $this->serializer->deserialize($response->getBody()->getContents(), $responseClass, 'json');
+        $result = $this->serializer->deserialize($response->getBody()->getContents(), $responseClass, 'json');
+
+        $event = new RequestAfterEvent($result, $response);
+        $this->eventDispatcher->dispatch($event);
+
+        return $event->getResponseObject();
     }
 
     /**

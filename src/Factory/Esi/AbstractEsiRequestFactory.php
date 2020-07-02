@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace F1monkey\EveEsiBundle\Factory\Esi;
 
-use F1monkey\EveEsiBundle\ValueObject\EsiRequest;
 use F1monkey\EveEsiBundle\ValueObject\RequestInterface;
 
 /**
@@ -29,24 +28,36 @@ abstract class AbstractEsiRequestFactory
     }
 
     /**
-     * @param string $endpoint
+     * @param string      $endpoint
      * @param string|null $accessToken
-     * @param object $requestData
+     * @param object|null $query
+     * @param object|null $body
+     * @param string|null $eTag
      *
      * @return RequestInterface
      */
     protected function doCreateRequest(
         string $endpoint,
         string $accessToken = null,
-        object $requestData = null
+        object $query = null,
+        object $body = null,
+        string $eTag = null
     ): RequestInterface
     {
         $request = clone $this->requestPrototype;
         $request->setEndpoint($endpoint)
-                ->setRequest($requestData);
+                ->setQuery($query)
+                ->setBody($body);
 
-        if ($request instanceof EsiRequest) {
-            $request->setAccessToken($accessToken);
+        if ($accessToken) {
+            $request->setHeader(
+                'Authorization',
+                sprintf('Bearer %s', $accessToken)
+            );
+        }
+
+        if ($eTag) {
+            $request->setHeader('If-None-Match', $eTag);
         }
 
         return $request;
