@@ -4,8 +4,8 @@ declare(strict_types=1);
 namespace F1monkey\EveEsiBundle\Tests\unit\Service\Esi;
 
 use Codeception\Test\Unit;
-use Doctrine\Common\Collections\Collection;
 use Exception;
+use F1monkey\EveEsiBundle\Dto\Esi\Response\EsiResponseCollection;
 use F1monkey\EveEsiBundle\Exception\ApiClient\ApiClientExceptionInterface;
 use F1monkey\EveEsiBundle\Exception\ApiClient\RequestValidationException;
 use F1monkey\EveEsiBundle\Factory\Esi\MarketRequestFactoryInterface;
@@ -29,7 +29,7 @@ class MarketServiceTest extends Unit
      */
     public function testCanGetV1CharactersOrdersHistory()
     {
-        $expected = $this->makeEmpty(Collection::class);
+        $expected = $this->makeEmpty(EsiResponseCollection::class);
 
         /** @var ApiClientInterface $client */
         $client = $this->makeEmpty(
@@ -60,7 +60,7 @@ class MarketServiceTest extends Unit
      */
     public function testCanGetV2CharactersOrders()
     {
-        $expected = $this->makeEmpty(Collection::class);
+        $expected = $this->makeEmpty(EsiResponseCollection::class);
 
         /** @var ApiClientInterface $client */
         $client = $this->makeEmpty(

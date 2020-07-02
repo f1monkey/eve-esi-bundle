@@ -26,6 +26,7 @@ services:
         arguments:
             $httpClient: '@f1monkey.eve_esi.guzzle'
             $serializer: '@jms_serializer'
+            $eventDispatcher: '@event_dispatcher'
             $exceptionFactory: '@f1monkey.eve_esi.oauth.request_exception_factory'
 
     f1monkey.eve_esi.oauth.api_client.validation_proxy:

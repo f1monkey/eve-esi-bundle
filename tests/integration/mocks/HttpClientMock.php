@@ -23,6 +23,16 @@ class HttpClientMock implements ClientInterface
     protected ?string $response;
 
     /**
+     * @var int
+     */
+    protected int $statusCode = 200;
+
+    /**
+     * @var array<string, string>
+     */
+    protected array $responseHeaders = [];
+
+    /**
      * @var string|null
      */
     protected ?string $lastRequestUrl = null;
@@ -47,7 +57,9 @@ class HttpClientMock implements ClientInterface
         return Stub::makeEmpty(
             ResponseInterface::class,
             [
-                'getBody' => $body,
+                'getBody'       => $body,
+                'getHeaders'    => $this->responseHeaders,
+                'getStatusCode' => $this->statusCode,
             ]
         );
     }
@@ -94,5 +106,45 @@ class HttpClientMock implements ClientInterface
     public function getLastRequestOptions(): ?array
     {
         return $this->lastRequestOptions;
+    }
+
+    /**
+     * @return int
+     */
+    public function getStatusCode(): int
+    {
+        return $this->statusCode;
+    }
+
+    /**
+     * @param int $statusCode
+     *
+     * @return HttpClientMock
+     */
+    public function setStatusCode(int $statusCode): HttpClientMock
+    {
+        $this->statusCode = $statusCode;
+
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getResponseHeaders(): array
+    {
+        return $this->responseHeaders;
+    }
+
+    /**
+     * @param array $responseHeaders
+     *
+     * @return HttpClientMock
+     */
+    public function setResponseHeaders(array $responseHeaders): HttpClientMock
+    {
+        $this->responseHeaders = $responseHeaders;
+
+        return $this;
     }
 }

@@ -49,7 +49,8 @@ class RequestValidationProxy implements ApiClientInterface
      */
     public function post(RequestInterface $request, string $responseClass): object
     {
-        $this->validateRequestData($request->getRequest());
+        $this->validateRequestData($request->getQuery());
+        $this->validateRequestData($request->getBody());
 
         return $this->apiClient->post($request, $responseClass);
     }
@@ -64,7 +65,7 @@ class RequestValidationProxy implements ApiClientInterface
      */
     public function get(RequestInterface $request, string $responseClass): object
     {
-        $this->validateRequestData($request->getRequest());
+        $this->validateRequestData($request->getQuery());
 
         return $this->apiClient->get($request, $responseClass);
     }

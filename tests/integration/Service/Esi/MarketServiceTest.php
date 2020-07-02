@@ -47,7 +47,15 @@ class MarketServiceTest extends AbstractEsiTestCase
 JSON;
         $characterId = 10;
         $page        = 100;
+        $etag = 'qwerty';
+        $pageCount = 2000;
 
+        $this->httpMock->setResponseHeaders(
+            [
+                'ETag' => $etag,
+                'X-Pages' => $pageCount
+            ]
+        );
         $this->httpMock->setResponse($response);
 
         /** @var MarketServiceInterface $service */
@@ -77,6 +85,8 @@ JSON;
         static::assertSame(456, $order->getTypeId());
         static::assertSame(4422, $order->getVolumeRemain());
         static::assertSame(123456, $order->getVolumeTotal());
+        static::assertSame($etag, $result->getETag());
+        static::assertSame($pageCount, $result->getPageCount());
     }
 
     /**

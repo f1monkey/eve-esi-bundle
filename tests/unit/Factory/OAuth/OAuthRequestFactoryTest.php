@@ -31,8 +31,8 @@ class OAuthRequestFactoryTest extends Unit
         $factory = new OAuthRequestFactory($this->createRequestPrototype());
         $result  = $factory->createVerifyCodeRequest($code);
 
-        static::assertInstanceOf(VerifyCodeRequest::class, $result->getRequest());
-        static::assertSame($code, $result->getRequest()->getAuthorizationCode());
+        static::assertInstanceOf(VerifyCodeRequest::class, $result->getQuery());
+        static::assertSame($code, $result->getQuery()->getAuthorizationCode());
     }
 
     /**
@@ -46,8 +46,8 @@ class OAuthRequestFactoryTest extends Unit
         $factory = new OAuthRequestFactory($this->createRequestPrototype());
         $result  = $factory->createRefreshTokenRequest($token);
 
-        static::assertInstanceOf(RefreshTokenRequest::class, $result->getRequest());
-        static::assertSame($token, $result->getRequest()->getRefreshToken());
+        static::assertInstanceOf(RefreshTokenRequest::class, $result->getQuery());
+        static::assertSame($token, $result->getQuery()->getRefreshToken());
     }
 
     /**

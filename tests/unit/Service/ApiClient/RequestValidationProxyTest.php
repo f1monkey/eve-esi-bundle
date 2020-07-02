@@ -100,7 +100,8 @@ class RequestValidationProxyTest extends Unit
         $request = $this->makeEmpty(
             RequestInterface::class,
             [
-                'getRequest' => new stdClass(),
+                'getQuery' => new stdClass(),
+                'getBody' => new stdClass(),
             ]
         );
 

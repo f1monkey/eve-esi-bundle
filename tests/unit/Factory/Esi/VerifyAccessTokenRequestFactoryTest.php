@@ -36,8 +36,8 @@ class VerifyAccessTokenRequestFactoryTest extends Unit
 
         $this->assertEqualsCanonicalizing(
             ['headers' => ['Authorization' => sprintf('Bearer %s', $token)]],
-            $result->getGetRequestOptions()
+            $result->getRequestOptions()
         );
-        $this->assertNull($result->getRequest());
+        $this->assertNull($result->getQuery());
     }
 }
