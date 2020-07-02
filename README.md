@@ -138,7 +138,7 @@ class MyService
 }
 ```
 
-### Using ETag
+##### Using ETag
 
 Request methods having `$eTag` argument should be cacheable.
 Response will contain a cache tag (see [HasETagInterface](./src/Dto/Esi/Response/HasETagInterface.php)).
