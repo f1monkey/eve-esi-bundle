@@ -22,6 +22,7 @@ Create config file (i.e. `config/packages/f1monkey_eve_esi.yaml`)
 
 ```yaml
 f1monkey_eve_esi:
+    user_agent: 'Test/1.0' # example User-Agent header for SSO/ESI requests, default is null, optional parameter
     oauth: # required if you want to use EVE SSO, otherwise can be skipped
         callback_url: '%env(EVE_ESI_CALLBACK_URL)%' # your app's callback url (same as in your application settings)
         client_id: '%env(EVE_ESI_CLIENT_ID)%' # your app's client id

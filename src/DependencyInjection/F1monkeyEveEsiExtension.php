@@ -40,6 +40,8 @@ class F1monkeyEveEsiExtension extends Extension
             $loader->load('oauth.yaml');
         }
 
+        $container->setParameter('f1monkey.eve_esi.user_agent', $config['user_agent'] ?? null);
+
         $this->injectEsiParameters($config['esi'], $container);
 
         $loader->load('services.yaml');

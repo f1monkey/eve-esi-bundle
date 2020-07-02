@@ -38,6 +38,11 @@ trait RequestTrait
     protected array $headers = [];
 
     /**
+     * @var string|null
+     */
+    protected ?string $userAgent;
+
+    /**
      * @return string
      */
     public function getBaseUrl(): string

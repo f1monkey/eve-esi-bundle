@@ -25,14 +25,17 @@ class EsiRequest implements RequestInterface
      *
      * @param ArrayTransformerInterface $arrayTransformer
      * @param string                    $baseUrl
+     * @param string|null               $userAgent
      */
     public function __construct(
         ArrayTransformerInterface $arrayTransformer,
-        string $baseUrl
+        string $baseUrl,
+        string $userAgent = null
     )
     {
         $this->arrayTransformer = $arrayTransformer;
         $this->baseUrl          = $baseUrl;
+        $this->userAgent        = $userAgent;
     }
 
     /**
@@ -43,6 +46,10 @@ class EsiRequest implements RequestInterface
         $result = [
             RequestOptions::HEADERS => $this->headers,
         ];
+
+        if ($this->userAgent !== null) {
+            $result[RequestOptions::HEADERS]['User-Agent'] = $this->userAgent;
+        }
 
         if ($this->query !== null) {
             $result[RequestOptions::QUERY] = $this->arrayTransformer->toArray($this->query);
